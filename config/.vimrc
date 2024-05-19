@@ -56,10 +56,9 @@ vnoremap <leader>y "+y
 " Reload vimrc
 nnoremap <leader>\ :so $MYVIMRC<CR>
 
-" Saving files and quitting
-nnoremap <leader>q :q<CR>
-" nnoremap <leader>d :bd!<CR>
-nnoremap <leader>w :w<CR>
+" Switch buffers
+nnoremap <leader>] :bn<CR>
+nnoremap <leader>[ :bp<CR>
 
 " Makes switching windows easier
 nnoremap <c-j> <c-w>j
