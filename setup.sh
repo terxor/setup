@@ -18,7 +18,7 @@ copy_no_ow() {
 }
 
 copy_file() {
-  copy_no_ow $BASE_DIR/config/$1 .
+  copy_no_ow $BASE_DIR/config/$1 $1
   print_status "COPY" $1
 }
 

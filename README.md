@@ -12,14 +12,26 @@ Present value is `~/workspace/setup`
 ### Packages
 
 ```
-sudo apt install gnome-tweak-tool
-sudo apt install neovim
-sudo apt install git
-sudo apt install zsh
-sudo apt install fzf
-sudo apt install silversearcher-ag
-sudo apt install curl
+# Before
+sudo apt update
+
+# Basic/pre-requisites
+sudo apt install git curl
+
+# Shell/utility
+sudo apt install zsh fzf silversearcher-ag vim-gtk3
+
+# Misc.
 sudo apt install g++
+sudo apt install gnome-tweak-tool
+```
+
+#### zsh customizations
+
+`oh-my-zsh` and `fzf-tab`:
+```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
 ```
 
 ### Terminal
