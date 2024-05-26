@@ -15,6 +15,7 @@ source $ZSH/oh-my-zsh.sh
 alias zshconfig="source ~/.zshrc"
 
 # There is a newline in the prompt
+# The j part shows number of suspended jobs
 PROMPT='%(?:%F{green}OK%f:%F{red}FAILED%f) %F{white}($?)%f
-%F{blue}%~%f $(git_prompt_info)'
+%F{blue}%~%f%F{red}%(1j. [%j].)%f $(git_prompt_info)'
 

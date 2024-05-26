@@ -28,6 +28,7 @@ set updatecount=0                 " disable swap files
 set belloff=all                   " turn off terminal bell
 set splitright                    " put the new window right of the current one 
 set splitbelow                    " put the new window below the current one 
+set autoindent                    " preserve indentation on next line
 
 " -- MAPPINGS --
 let mapleader = " "
@@ -41,8 +42,7 @@ map Q gqip
 
 vnoremap . :norm.<CR>
 
-command! Cfg :normal <C-w><C-v><C-l>:e $MYVIMRC<cr>
-" nnoremap <leader>rc 
+command! Config :normal <C-w><C-v><C-l>:e $MYVIMRC<cr>
 
 " paste: in visual mode, paste replaces the selected content
 nnoremap <leader>p "+p
@@ -52,9 +52,6 @@ vnoremap <leader>p d"+P
 " otherwise, complete the motion
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
-
-" Reload vimrc
-nnoremap <leader>\ :so $MYVIMRC<CR>
 
 " Switch buffers
 nnoremap <leader>] :bn<CR>
