@@ -29,7 +29,8 @@ sudo apt install gnome-tweak-tool
 More:
 ```
 # For better diff viewing
-pip install --user ydiff
+curl -L https://raw.github.com/ymattw/ydiff/master/ydiff.py > ~/bin/ydiff
+chmod +x ~/bin/ydiff
 ```
 
 #### zsh customizations
