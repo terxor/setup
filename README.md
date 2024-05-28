@@ -26,6 +26,12 @@ sudo apt install g++
 sudo apt install gnome-tweak-tool
 ```
 
+More:
+```
+# For better diff viewing
+pip install --user ydiff
+```
+
 #### zsh customizations
 
 `oh-my-zsh` and `fzf-tab`:

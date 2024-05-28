@@ -29,6 +29,7 @@ set belloff=all                   " turn off terminal bell
 set splitright                    " put the new window right of the current one 
 set splitbelow                    " put the new window below the current one 
 set autoindent                    " preserve indentation on next line
+set foldmethod=marker             " fold content inside marker (see foldmarker)
 
 " -- MAPPINGS --
 let mapleader = " "
@@ -56,6 +57,9 @@ vnoremap <leader>y "+y
 " Switch buffers
 nnoremap <leader>] :bn<CR>
 nnoremap <leader>[ :bp<CR>
+
+" Buffer list
+nnoremap <c-p> :ls<CR>:b
 
 " Makes switching windows easier
 nnoremap <c-j> <c-w>j
@@ -94,3 +98,6 @@ if has("statusline") && !&cp
   set statusline+=\ %r                          " readonly indicator
 endif
 
+" Status line color on active/inactive buffers 
+highlight StatusLine cterm=bold ctermfg=white ctermbg=black guifg=#ffffff guibg=#000000
+highlight StatusLineNC cterm=NONE ctermfg=white ctermbg=darkgrey guifg=#ffffff guibg=#808080

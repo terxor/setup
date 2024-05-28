@@ -16,3 +16,7 @@ alias py='python3'
 
 # Better colors for fzf results
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#757575,bg:#ffffff,hl:#48698a --color=fg+:#000000,bg+:#ffffff,hl+:#5196ad --color=info:#afaf87,prompt:#d7005f,pointer:#af5fff --color=marker:#87ff00,spinner:#af5fff,header:#87afaf'
+
+# CP utils
+export CP_UTILS=$HOME/workspace/cp/util
+alias cpinit='$CP_UTILS/cpinit.sh'
