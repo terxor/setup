@@ -19,4 +19,3 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#757575,bg:#ffffff,hl:#486
 
 # CP utils
 export CP_UTILS=$HOME/workspace/cp/util
-alias cpinit='$CP_UTILS/cpinit.sh'
