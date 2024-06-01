@@ -24,6 +24,7 @@ sudo apt install zsh fzf silversearcher-ag vim-gtk3
 # Misc.
 sudo apt install g++
 sudo apt install gnome-tweak-tool
+sudo apt install build-essential
 ```
 
 More:
