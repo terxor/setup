@@ -19,7 +19,7 @@ sudo apt update
 sudo apt install git curl
 
 # Shell/utility
-sudo apt install zsh fzf silversearcher-ag vim-gtk3
+sudo apt install zsh fzf silversearcher-ag vim-gtk3 tree
 
 # Misc.
 sudo apt install g++
