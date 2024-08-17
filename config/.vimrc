@@ -101,3 +101,11 @@ endif
 " Status line color on active/inactive buffers 
 highlight StatusLine cterm=bold ctermfg=white ctermbg=black guifg=#ffffff guibg=#000000
 highlight StatusLineNC cterm=NONE ctermfg=white ctermbg=darkgrey guifg=#ffffff guibg=#808080
+
+" Markdown-specific settings
+autocmd FileType markdown setlocal textwidth=80
+autocmd FileType markdown setlocal formatoptions+=t
+
+" Highlight long lines for Markdown files
+autocmd FileType markdown highlight LongLine ctermfg=red guifg=red
+autocmd FileType markdown match LongLine /\%81v.*$/
