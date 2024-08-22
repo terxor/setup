@@ -45,6 +45,7 @@ install_package silversearcher-ag
 install_package vim-gtk3
 install_package g++
 install_package build-essential
+install_package zsh
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
   print_status "install omz" skip
