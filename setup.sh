@@ -1,36 +1,114 @@
-#!/usr/bin/env bash
-
-BASE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+#!/bin/bash
 
 print_status() {
-  [[ $? -eq 0 ]] && status='\033[0;32mDONE\033[0m' || status='\033[0;33mALREADY EXISTS\033[0m'
-  echo -e "$1 $2: $status"
+  local status=$?
+  local message=$1
+  local skip=$2
+  local width=40
+
+  if [ "$skip" == "skip" ]; then
+    printf "%-${width}s \e[90mSKIPPED\e[0m\n" "$message"
+  else
+    if [ $status -eq 0 ]; then
+      printf "%-${width}s \e[32mDONE\e[0m\n" "$message"
+    else
+      printf "%-${width}s \e[31mFAILED\e[0m\n" "$message"
+    fi
+  fi
 }
 
-copy_no_ow() {
-  SRC=$1
-  DEST=$2
-  if [[ -e "$DEST" ]]; then
-    return 1
-  fi
-  cp $SRC $DEST
-  return 0
+sudo apt-get update -y >/dev/null 2>&1
+print_status "update package list"
+
+is_installed() {
+  dpkg -l | grep -qw "$1"
 }
+
+install_package() {
+  local package=$1
+  local action_name="install $package"
+
+  if is_installed "$package"; then
+    print_status "$action_name" skip
+  else
+    sudo apt-get install -y "$package" >/dev/null 2>&1
+    print_status "$action_name"
+  fi
+}
+
+packages=(
+  "git"
+  "curl"
+  "tree" # Recursive directory listing command
+  "htop" # Interactive process viewer
+)
+
+for package in "${packages[@]}"; do
+  install_package "$package"
+done
+
+if [ -d "$HOME/.oh-my-zsh" ]; then
+  print_status "install omz" skip
+else
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended >/dev/null 2>&1
+  print_status "install omz"
+fi
+
+if [ -f "$HOME/bin/ydiff" ]; then
+  print_status "install ydiff" skip
+else
+  mkdir -p "$HOME/bin"
+  curl -L https://raw.github.com/ymattw/ydiff/master/ydiff.py > "$HOME/bin/ydiff" >/dev/null 2>&1
+  chmod +x "$HOME/bin/ydiff"
+  print_status "install ydiff"
+fi
+
+# --------------------------------
+# configs setup
+# --------------------------------
+SETUP_REPO=$HOME/workspace/setup
+
+if [ ! -d $SETUP_REPO ]; then
+    mkdir -p $SETUP_REPO
+    git clone https://github.com/terxor/setup $SETUP_REPO
+    print_status "clone setup repo"
+else
+    print_status "clone setup repo" skip
+fi
 
 copy_file() {
-  copy_no_ow $BASE_DIR/config/$1 $1
-  print_status "COPY" $1
+  local src=$SETUP_REPO/config/$1
+  local tgt=$HOME/$1
+
+  if [[ -e "$tgt" ]]; then
+    print_status "copy config $1" skip
+  else
+    cp $src $tgt
+    print_status "copy config $1"
+  fi
 }
 
 make_link() {
-  ln -s $BASE_DIR/config/$1 &>/dev/null
-  print_status "LINK" $1
+  local src=$SETUP_REPO/config/$1
+  local tgt=$HOME/$1
+
+  if [[ -L "$tgt" ]]; then
+    print_status "make symlink $1" skip
+  else
+    ln -s $src $tgt &>/dev/null
+    print_status "make symlink $1"
+  fi
 }
 
-cd $HOME
-echo "Starting setup"
 make_link .gitconfig
 make_link .zshenv
 make_link .vimrc
 make_link .zshrc
 copy_file .netrc
+
+if [ "$SHELL" != "$(which zsh)" ]; then
+    chsh -s "$(which zsh)"
+    print_status "switch to zsh"
+else
+    print_status "switch to zsh" skip
+fi
