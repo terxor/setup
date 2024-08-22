@@ -36,16 +36,30 @@ install_package() {
   fi
 }
 
-install_package "git"
-install_package "curl"
-install_package "tree" # Recursive directory listing command
-install_package "htop" # Interactive process viewer
+install_package git
+install_package curl
+install_package tree # Recursive directory listing command
+install_package htop # Interactive process viewer
+install_package fzf
+install_package silversearcher-ag
+install_package vim-gtk3
+install_package g++
+install_package build-essential
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
   print_status "install omz" skip
 else
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended >/dev/null 2>&1
   print_status "install omz"
+  # OMZ installation creates a default .zshrc
+  rm -f "$HOME/.zshrc"
+fi
+
+if [ -d "$HOME/.oh-my-zsh/custom/plugins/fzf-tab" ]; then
+  print_status "install fzf-tab" skip
+else
+  git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab >/dev/null 2>&1
+  print_status "install fzf-tab"
 fi
 
 if [ -f "$HOME/bin/ydiff" ]; then
@@ -64,7 +78,7 @@ SETUP_REPO=$HOME/workspace/setup
 
 if [ ! -d $SETUP_REPO ]; then
     mkdir -p $SETUP_REPO
-    git clone https://github.com/terxor/setup $SETUP_REPO >/dev/null
+    git clone https://github.com/terxor/setup $SETUP_REPO >/dev/null 2>&1
     print_status "clone setup repo"
 else
     print_status "clone setup repo" skip
@@ -89,7 +103,7 @@ make_link() {
   if [ -L "$tgt" ]; then
     print_status "make symlink $1" skip
   else
-    ln -s $src $tgt &>/dev/null
+    ln -s $src $tgt >/dev/null 2>&1
     print_status "make symlink $1"
   fi
 }
