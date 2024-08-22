@@ -1,5 +1,11 @@
 # Setup
 
+## TLDR
+
+```
+sh -c "$(wget -qO- https://raw.githubusercontent.com/terxor/setup/main/setup.sh)"
+```
+
 ## Ubuntu
 
 ### Configurations
