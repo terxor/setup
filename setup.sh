@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 print_status() {
   local status=$?
@@ -6,10 +6,10 @@ print_status() {
   local skip=$2
   local width=40
 
-  if [ "$skip" == "skip" ]; then
+  if [ "$skip" = "skip" ]; then
     printf "%-${width}s \e[90mSKIPPED\e[0m\n" "$message"
   else
-    if [ $status -eq 0 ]; then
+    if [ "$status" -eq 0 ]; then
       printf "%-${width}s \e[32mDONE\e[0m\n" "$message"
     else
       printf "%-${width}s \e[31mFAILED\e[0m\n" "$message"
@@ -36,16 +36,10 @@ install_package() {
   fi
 }
 
-packages=(
-  "git"
-  "curl"
-  "tree" # Recursive directory listing command
-  "htop" # Interactive process viewer
-)
-
-for package in "${packages[@]}"; do
-  install_package "$package"
-done
+install_package "git"
+install_package "curl"
+install_package "tree" # Recursive directory listing command
+install_package "htop" # Interactive process viewer
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
   print_status "install omz" skip
@@ -70,7 +64,7 @@ SETUP_REPO=$HOME/workspace/setup
 
 if [ ! -d $SETUP_REPO ]; then
     mkdir -p $SETUP_REPO
-    git clone https://github.com/terxor/setup $SETUP_REPO
+    git clone https://github.com/terxor/setup $SETUP_REPO >/dev/null
     print_status "clone setup repo"
 else
     print_status "clone setup repo" skip
@@ -80,7 +74,7 @@ copy_file() {
   local src=$SETUP_REPO/config/$1
   local tgt=$HOME/$1
 
-  if [[ -e "$tgt" ]]; then
+  if [ -e "$tgt" ]; then
     print_status "copy config $1" skip
   else
     cp $src $tgt
@@ -92,7 +86,7 @@ make_link() {
   local src=$SETUP_REPO/config/$1
   local tgt=$HOME/$1
 
-  if [[ -L "$tgt" ]]; then
+  if [ -L "$tgt" ]; then
     print_status "make symlink $1" skip
   else
     ln -s $src $tgt &>/dev/null
