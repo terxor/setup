@@ -2,6 +2,9 @@
 
 ## TLDR
 
+**Please verify any script you are running from the internet.
+Double check the path and contents before executing such scripts.**
+
 ```
 sh -c "$(wget -qO- https://raw.githubusercontent.com/terxor/setup/main/setup.sh)"
 ```
