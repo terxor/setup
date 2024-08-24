@@ -46,6 +46,7 @@ install_package vim-gtk3
 install_package g++
 install_package build-essential
 install_package zsh
+install_package markdownlint
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
   print_status "install omz" skip
@@ -67,7 +68,7 @@ if [ -f "$HOME/bin/ydiff" ]; then
   print_status "install ydiff" skip
 else
   mkdir -p "$HOME/bin"
-  curl -L https://raw.github.com/ymattw/ydiff/master/ydiff.py > "$HOME/bin/ydiff" >/dev/null 2>&1
+  curl -s -o $HOME/bin/ydiff https://raw.githubusercontent.com/ymattw/ydiff/master/ydiff.py
   chmod +x "$HOME/bin/ydiff"
   print_status "install ydiff"
 fi
