@@ -21,7 +21,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#757575,bg:#ffffff,hl:#486
 export CP_UTILS=$HOME/workspace/cs/cp/util
 
 # Texlive
-PATH="/usr/local/texlive/2024/bin/x86_64-linux:$PATH"
+export PATH=$PATH:$HOME/bin/texlive/bin/x86_64-linux
 
 # Gems
 PATH="$PATH:$HOME/gems/bin"

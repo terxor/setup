@@ -97,5 +97,22 @@ Note: Color scheme for GNOME is generated from standard light theme in the follo
   `gsettings set org.gnome.shell.extensions.dash-to-dock show-trash false`
 
 - For tex, look at install instructions on [tex live official website](https://tug.org/texlive/quickinstall.html#running)
+  
+  Reiterated here:
+  ```
+  cd ~/workspace/scratch
+  curl -L -o install-tl-unx.tar.gz https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+  zcat < install-tl-unx.tar.gz | tar xf -
+  cd install-tl-*
+  perl ./install-tl --no-interaction --scheme=small --no-doc-install --no-src-install --texdir=$HOME/bin/texlive
+
+  # Now, add the following line to your shell init
+  export PATH=$PATH:$HOME/bin/texlive/bin/x86_64-linux
+
+  # Install additional packages
+  tlmgr install titlesec
+  tlmgr install enumitem
+
+  ```
 
 ***
