@@ -1,0 +1,12 @@
+{
+  "workbench.colorTheme": "Default Light Modern",
+  "vim.vimrc.enable": true,
+  "vim.vimrc.path": "/home/terxor/.vimrc",
+  "editor.lineNumbers": "relative",
+  "editor.wordWrapColumn": 200,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "off",
+  "[markdown]": {
+    "editor.wordWrap": "off"
+  }
+}

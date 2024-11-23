@@ -115,4 +115,9 @@ Note: Color scheme for GNOME is generated from standard light theme in the follo
 
   ```
 
+- C++ code formatting tooling:
+  - `apt install clang-format`
+  - Normally this tool will work using stdin/stdout
+  - To reformat a file in-place: `clang-format -i src.cc`
+
 ***
