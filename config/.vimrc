@@ -119,3 +119,5 @@ highlight CursorLineNr  cterm=bold guibg=#efefe7
 set fillchars=vert:│
 highlight VertSplit guibg=#cfcfc7 guifg=#fffff7
 
+highlight Visual ctermbg=darkblue ctermfg=white guibg=#f2e9c9 guifg=#000000
+
