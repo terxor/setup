@@ -99,8 +99,8 @@ if has("statusline") && !&cp
 endif
 
 " Status line color on active/inactive buffers 
-highlight StatusLine cterm=bold ctermfg=white ctermbg=black guifg=#ffffff guibg=#000000
-highlight StatusLineNC cterm=NONE ctermfg=white ctermbg=darkgrey guifg=#ffffff guibg=#808080
+highlight StatusLine    cterm=bold ctermfg=black ctermbg=white    guifg=#000000 guibg=#bfe0ff
+highlight StatusLineNC  cterm=none ctermfg=black ctermbg=darkgrey guifg=#000000 guibg=#cccccc
 
 " Markdown-specific settings
 autocmd FileType markdown setlocal textwidth=80
@@ -109,3 +109,13 @@ autocmd FileType markdown setlocal formatoptions+=t
 " Highlight long lines for Markdown files
 autocmd FileType markdown highlight LongLine ctermfg=red guifg=red
 autocmd FileType markdown match LongLine /\%81v.*$/
+
+" Show cursor line in insert mode
+autocmd InsertEnter,InsertLeave * set cul!
+highlight CursorLine    cterm=none guibg=#efefe7
+highlight CursorLineNr  cterm=bold guibg=#efefe7
+
+" Customize vertical line separator
+set fillchars=vert:│
+highlight VertSplit guibg=#cfcfc7 guifg=#fffff7
+

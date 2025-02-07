@@ -5,12 +5,17 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
 plugins=(
+  vi-mode # always keep first, otherwise it breaks fzf and fzf-tab
   git
   fzf
   fzf-tab
 )
 
 source $ZSH/oh-my-zsh.sh
+
+bindkey -M vicmd ';'  end-of-line
+bindkey -M viins 'kj' vi-cmd-mode
+bindkey -M vicmd 'kj' vi-cmd-mode # basically no-op
 
 alias zshconfig="source ~/.zshrc"
 
