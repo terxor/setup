@@ -31,6 +31,8 @@ set splitbelow                    " put the new window below the current one
 set autoindent                    " preserve indentation on next line
 set foldmethod=marker             " fold content inside marker (see foldmarker)
 
+color xv3_light
+
 " -- MAPPINGS --
 let mapleader = " "
 inoremap kj <esc>
@@ -98,10 +100,6 @@ if has("statusline") && !&cp
   set statusline+=\ %r                          " readonly indicator
 endif
 
-" Status line color on active/inactive buffers 
-highlight StatusLine    cterm=bold ctermfg=black ctermbg=white    guifg=#000000 guibg=#bfe0ff
-highlight StatusLineNC  cterm=none ctermfg=black ctermbg=darkgrey guifg=#000000 guibg=#cccccc
-
 " Markdown-specific settings
 autocmd FileType markdown setlocal textwidth=80
 autocmd FileType markdown setlocal formatoptions+=t
@@ -112,12 +110,6 @@ autocmd FileType markdown match LongLine /\%81v.*$/
 
 " Show cursor line in insert mode
 autocmd InsertEnter,InsertLeave * set cul!
-highlight CursorLine    cterm=none guibg=#efefe7
-highlight CursorLineNr  cterm=bold guibg=#efefe7
 
 " Customize vertical line separator
 set fillchars=vert:│
-highlight VertSplit guibg=#cfcfc7 guifg=#fffff7
-
-highlight Visual ctermbg=darkblue ctermfg=white guibg=#f2e9c9 guifg=#000000
-
