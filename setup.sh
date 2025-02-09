@@ -116,6 +116,9 @@ make_link .vimrc
 make_link .zshrc
 copy_file .netrc
 
+make_link .alacritty.toml
+make_link .tmux.conf
+
 if [ "$SHELL" != "$(which zsh)" ]; then
     chsh -s "$(which zsh)"
     print_status "switch to zsh"

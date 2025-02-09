@@ -4,9 +4,13 @@
 background = "#fffff7"
 foreground = "#404040"
 
+[colors.selection]
+text = "#000000"
+background = "#f2e9c9"
+
 [colors.cursor]
-text = '#000000'
-cursor = '#bfe0ff'
+text = "#000000"
+cursor = "#bfe0ff"
 
 [keyboard]
 bindings = [
@@ -31,4 +35,24 @@ normal = { family = "Inconsolata" }
 [cursor.style]
 shape = "Block"
 blinking = "Never"
+
+[colors.normal]
+black                 = "#14181a"
+red                   = "#a62524"
+green                 = "#2f7500"
+yellow                = "#b08904"
+blue                  = "#1e6599"
+magenta               = "#711980"
+cyan                  = "#1e736c"
+white                 = "#807d72"
+
+[colors.bright]
+black                 = "#073f4d"
+red                   = "#de3330"
+green                 = "#42a600"
+yellow                = "#dbab05"
+blue                  = "#2377b5"
+magenta               = "#a925bf"
+cyan                  = "#2ba69c"
+white                 = "#a6a195"
 
