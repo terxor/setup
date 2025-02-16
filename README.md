@@ -120,4 +120,10 @@ Note: Color scheme for GNOME is generated from standard light theme in the follo
   - Normally this tool will work using stdin/stdout
   - To reformat a file in-place: `clang-format -i src.cc`
 
+- For alacritty on windows:
+  ```
+
+curl -o "%USERPROFILE%\AppData\Roaming\alacritty\alacritty.toml" https://raw.githubusercontent.com/terxor/setup/refs/heads/staging/config/.alacritty.toml
+  ```
+
 ***

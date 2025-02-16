@@ -47,6 +47,7 @@ install_package g++
 install_package build-essential
 install_package zsh
 install_package markdownlint
+install_package fonts-firacode
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
   print_status "install omz" skip

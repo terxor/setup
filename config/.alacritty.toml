@@ -30,7 +30,7 @@ history = 50000
 
 [font]
 size = 12
-normal = { family = "Inconsolata" }
+normal = { family = "Fira Code" }
 
 [cursor.style]
 shape = "Block"

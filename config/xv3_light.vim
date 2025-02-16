@@ -9,7 +9,7 @@ set background=light
 highlight clear
 syntax reset
 
-let s:bg = "#fffff7"
+let s:bg = "#ffffff"
 let s:fg = "#404040"
 
 " Highlight only for gui
@@ -47,17 +47,37 @@ call Hg("CursorLineNr", "",         "#efefe7",  "none")
 call Hg("VertSplit", "#fffff7", "#cfcfc7", "")
 
 let s:faded = "#80827e"
+let s:blue = "#0f6da3"
+let s:green = "#547d2a"
+let s:dark_green = "#6bc90c"
+let s:alt_green = "#619e23"
+let s:yellow = "#ba8c00"
+let s:purple = "#3d2687"
+let s:dark_brown =  "#4f0e02"
+let s:brown =  "#8a5345"
+let s:unset =  "#00ff00"
+let s:teal = "#3f8f8b"
+let s:red = "#8c1c1c"
 
-call HgF("Comment", s:faded)
-call HgF("Keyword", "#ff0000")
-call HgF("String", "#547d2a")
-call HgF("Number", "#ba8c00")
-call HgF("Type", "#0f6da3")
-call HgF("Function", "#ff0000")
-call HgF("Identifier", "#4f0e02")
-call HgF("Constant", "#ff0000")
-call HgF("Statement", "#ff0000")
-call HgF("PreProc", "#ff0000")
+" call Hg("Comment", s:dark_green, "", "bold")
+call HgF("Comment", s:red)
+
+call HgF("Keyword", s:purple)
+
+call HgF("String", s:alt_green)
+
+call HgF("Number", s:yellow)
+
+call HgF("Type", s:blue)  " C++ const, template, int, struct, void, namespace, typename, bool, char, auto, ...
+call HgF("Function", s:blue)    " C++ ?
+call HgF("Identifier", s:blue)  " C++ ?
+
+call HgF("Constant", s:blue)   " C++ true/false, stderr, __VA_ARGS__, ...
+
+call HgF("Statement", s:blue)     " C++ using, for, return, while, if, ...
+
+call HgF("PreProc", s:purple)
+
 call HgF("Operator", "#ff0000")
 call HgF("Error", "#ff0000")
 call HgF("Warning", "#ff0000")
@@ -65,3 +85,13 @@ call HgF("Todo", "#ff0000")
 call HgF("LineNr", s:faded)
 
 call Hg("Visual", "", "#cff0ff", "")
+
+call Hg("Title", "#1a72ad", "", "bold")
+call HgF("xv3_CodeBlock", "#aa77aa")
+call HgF("xv3_Code", "#77aaaa")
+
+hi link markdownH1                Title
+hi link markdownCodeBlock         xv3_CodeBlock
+hi link markdownCode              xv3_Code
+hi link markdownHeadingDelimiter  Comment
+
