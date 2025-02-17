@@ -101,15 +101,18 @@ if has("statusline") && !&cp
 endif
 
 " Markdown-specific settings
-autocmd FileType markdown setlocal textwidth=80
-autocmd FileType markdown setlocal formatoptions+=t
-
-" Highlight long lines for Markdown files
-autocmd FileType markdown highlight LongLine ctermfg=red guifg=red
-autocmd FileType markdown match LongLine /\%81v.*$/
+augroup MDSettings
+  autocmd FileType markdown syn match markdownBlockquote '>.*'
+  autocmd FileType markdown syn match markdownLongLine /\%81v.*$/
+  autocmd FileType markdown setlocal textwidth=80
+  autocmd FileType markdown setlocal formatoptions+=t
+augroup END
 
 " Show cursor line in insert mode
 autocmd InsertEnter,InsertLeave * set cul!
 
-" Customize vertical line separator
+" Customize vertical line separator: U+2502
 set fillchars=vert:│
+
+vnoremap <leader>r :<c-u>%s/<c-r>*//<left>
+nnoremap <leader>r viw:<c-u>%s/<c-r>*//<left>
