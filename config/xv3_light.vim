@@ -34,7 +34,6 @@ function! HgF(group, guifg)
 endfunction
 
 
-" Let the terminal control the defaults
 " call Hg("Normal", s:fg, s:bg, "")
 
 " Status line color on active/inactive buffers 
@@ -95,7 +94,7 @@ call Hg("Visual", "", "#cff0ff", "")
 call HgF("Title", s:red)
 call HgF("xv3_CodeBlock", s:blue)
 call Hg("xv3_BoldTitle", s:red, "", "bold")
-call HgF("xv3_Code", "#77aaaa")
+call HgF("xv3_Code", s:purple)
 call HgF("xv3_Faded", s:faded)
 call HgF("xv3_WarnFg", s:warn_fg)
 call Hg("xv3_Warn", "", s:warn_bg, "")
@@ -108,7 +107,7 @@ hi link markdownRule              xv3_Faded
 hi link markdownBlockquote        String
 " disable em and strong to prevent unintended styling
 hi link markdownEmphasis          Normal
-hi link markdownString            Normal
+hi link markdownStrong            Normal
 hi link markdownLongLine          xv3_WarnFg
 hi link markdownError             xv3_Warn
 
