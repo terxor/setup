@@ -33,7 +33,6 @@ function! HgF(group, guifg)
   call Hg(a:group, a:guifg, "", "")
 endfunction
 
-
 " call Hg("Normal", s:fg, s:bg, "")
 
 " Status line color on active/inactive buffers 
