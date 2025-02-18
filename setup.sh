@@ -21,7 +21,12 @@ sudo apt-get update -y >/dev/null 2>&1
 print_status "update package list"
 
 is_installed() {
-  dpkg -l | grep -qw "$1"
+  res="$(dpkg-query --show --showformat='${db:Status-Status}\n' "$1")"
+  if [ "$res" = installed ]; then 
+    return 0
+  else
+    return 1
+  fi
 }
 
 install_package() {
@@ -48,6 +53,9 @@ install_package build-essential
 install_package zsh
 install_package markdownlint
 install_package fonts-firacode
+install_package alacritty
+install_package tmux
+install_package i3
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
   print_status "install omz" skip

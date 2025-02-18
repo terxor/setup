@@ -124,6 +124,20 @@ Note: Color scheme for GNOME is generated from standard light theme in the follo
   ```
 
 curl -o "%USERPROFILE%\AppData\Roaming\alacritty\alacritty.toml" https://raw.githubusercontent.com/terxor/setup/refs/heads/staging/config/.alacritty.toml
+
+- touchpad problem:
+  In  `/etc/X11/xorg.conf.d/touchpad-tap.conf` add the following (note: requires
+  sudo)
+
+  ```
+  Section "InputClass"
+          Identifier "libinput touchpad catchall"
+          MatchIsTouchpad "on"
+          MatchDevicePath "/dev/input/event*"
+          Driver "libinput"
+          Option "Tapping" "on"
+  EndSection
   ```
 
 ***
+
