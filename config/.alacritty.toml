@@ -29,7 +29,7 @@ dynamic_title = false
 history = 50000
 
 [font]
-size = 13
+size = 10
 normal = { family = "Fira Code" }
 
 [cursor.style]
