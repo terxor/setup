@@ -30,19 +30,24 @@ set splitright                    " put the new window right of the current one
 set splitbelow                    " put the new window below the current one 
 set autoindent                    " preserve indentation on next line
 set foldmethod=marker             " fold content inside marker (see foldmarker)
+set cursorline                    " easier to spot which line we are at
+set tildeop                       " use motions with tilde (swap case)
 
 color xv3_light
 
 " -- MAPPINGS --
 let mapleader = " "
+
 inoremap kj <esc>
 vnoremap kj <esc>
 
 map ; $
 
 " format paragraph
-map Q gqip
+" map Q gqip
 
+" Perform single editing action, then visual mode and press '.'
+" to repeat
 vnoremap . :norm.<CR>
 
 command! Config :normal <C-w><C-v><C-l>:e $MYVIMRC<cr>
@@ -56,12 +61,12 @@ vnoremap <leader>p d"+P
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 
-" Switch buffers
-nnoremap <leader>] :bn<CR>
-nnoremap <leader>[ :bp<CR>
+" Switch buffers TODO Revisit
+" nnoremap <leader>] :bn<CR>
+" nnoremap <leader>[ :bp<CR>
 
-" Buffer list
-nnoremap <c-p> :ls<CR>:b
+" Buffer list TODO Revisit
+" nnoremap <c-p> :ls<CR>:b
 
 " Makes switching windows easier
 nnoremap <c-j> <c-w>j
@@ -69,9 +74,9 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-" put tab to good use
-nnoremap <tab> %
-vnoremap <tab> %
+" put tab to good use TODO Revisit
+" nnoremap <tab> %
+" vnoremap <tab> %
 
 " clear search by searching for empty string
 nnoremap <leader>/ :let @/=''<CR>
@@ -109,10 +114,12 @@ augroup MDSettings
 augroup END
 
 " Show cursor line in insert mode
-autocmd InsertEnter,InsertLeave * set cul!
+" autocmd InsertEnter,InsertLeave * set cul!
 
 " Customize vertical line separator: U+2502
-set fillchars=vert:│
+" set fillchars=vert:│
 
-vnoremap <leader>r :<c-u>%s/<c-r>*//<left>
-nnoremap <leader>r viw:<c-u>%s/<c-r>*//<left>
+
+" Replace
+vnoremap <leader>r y:<C-u>%s/<C-r>"//<left>
+nnoremap <leader>r :%s/<C-r><C-w>//<left>

@@ -17,6 +17,8 @@ bindkey -M vicmd ';'  end-of-line
 bindkey -M viins 'kj' vi-cmd-mode
 bindkey -M vicmd 'kj' vi-cmd-mode # basically no-op
 
+# bindkey '^I' complete-word
+
 alias zshconfig="source ~/.zshrc"
 
 # There is a newline in the prompt
@@ -31,6 +33,8 @@ alias gds="git diff --staged | ydiff -s"
 # git status of multiple repositories under a dir
 alias gitstat='find . -maxdepth 1 -mindepth 1 -type d -exec sh -c "(echo {} && cd {} && git status -s && echo)" \;'
 
+alias vim='nvim'
+
 # Only auto-start tmux if:
 # 1. The shell is interactive.
 # 2. You are not already inside a tmux session.
@@ -38,3 +42,8 @@ alias gitstat='find . -maxdepth 1 -mindepth 1 -type d -exec sh -c "(echo {} && c
 if [[ $- == *i* ]] && [ -z "$TMUX" ] && [ $# -eq 0 ]; then
     tmux attach -t default || tmux new -s default
 fi
+
+# setopt noglob
+# zstyle ':completion:*' expand yes
+
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
