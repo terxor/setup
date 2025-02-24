@@ -1,7 +1,7 @@
 syntax on                         " syntax highlighting
 set nocompatible                  " compatible with vi? no
 set background=light              " affects colors
-set termguicolors                 " better colors in terminal?
+set notermguicolors                 " better colors in terminal?
 set hidden                        " allow modified unsaved buffers and other stuff
 set encoding=utf-8                " just use it
 set scroll=10                     " number of lines to scroll with <C-U>, <C-D>
@@ -33,7 +33,6 @@ set foldmethod=marker             " fold content inside marker (see foldmarker)
 set cursorline                    " easier to spot which line we are at
 set tildeop                       " use motions with tilde (swap case)
 
-color xv3_light
 
 " -- MAPPINGS --
 let mapleader = " "
@@ -60,6 +59,9 @@ vnoremap <leader>p d"+P
 " otherwise, complete the motion
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
+
+" Quick exit
+nnoremap <leader>q :qa<CR>
 
 " Switch buffers TODO Revisit
 " nnoremap <leader>] :bn<CR>
@@ -94,6 +96,10 @@ nnoremap <leader>d :put =strftime('%Y-%m-%d %H:%M:%S')<CR>
 nnoremap <leader>in :%!python3 -m json.tool --indent 2<CR>
 nnoremap <leader>il :%!python3 -m json.tool --indent 2 --json-lines<CR>
 
+" Replace
+vnoremap <leader>r y:<C-u>%s/<C-r>"/<C-r>"/<left>
+nnoremap <leader>r :%s/<C-r><C-w>/<C-r><C-w>/<left>
+
 " -- STATUS LINE --
 
 if has("statusline") && !&cp
@@ -107,11 +113,16 @@ endif
 
 " Markdown-specific settings
 augroup MDSettings
-  autocmd FileType markdown syn match markdownBlockquote '>.*'
+  " syntax region markdownBlockquote start="^>.*$" end="^$" contains=@markdownInline,markdownListText,markdownCodeBlock,markdownHacks keepend extend nextgroup=markdownBlockquote
+  " highlight link markdownBlockquote SpecialComment
+  autocmd FileType markdown syn match markdownBlockquote '^\s*>.*'
   autocmd FileType markdown syn match markdownLongLine /\%81v.*$/
   autocmd FileType markdown setlocal textwidth=80
   autocmd FileType markdown setlocal formatoptions+=t
+  autocmd FileType markdown iabbrev ``` ```<CR>```<Up>
 augroup END
+
+color xv3_light
 
 " Show cursor line in insert mode
 " autocmd InsertEnter,InsertLeave * set cul!
@@ -119,7 +130,9 @@ augroup END
 " Customize vertical line separator: U+2502
 " set fillchars=vert:│
 
+" autocmd OptionSet diff setlocal syntax=off
+if &diff
+syntax off
+set nocursorline
+endif
 
-" Replace
-vnoremap <leader>r y:<C-u>%s/<C-r>"//<left>
-nnoremap <leader>r :%s/<C-r><C-w>//<left>

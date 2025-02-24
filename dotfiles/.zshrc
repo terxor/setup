@@ -17,8 +17,6 @@ bindkey -M vicmd ';'  end-of-line
 bindkey -M viins 'kj' vi-cmd-mode
 bindkey -M vicmd 'kj' vi-cmd-mode # basically no-op
 
-# bindkey '^I' complete-word
-
 alias zshconfig="source ~/.zshrc"
 
 # There is a newline in the prompt

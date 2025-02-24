@@ -5,3 +5,9 @@
 [core]
   editor = vim
   autocrlf = false
+
+[diff]
+  tool = vimdiff
+
+[difftool]
+  prompt = false
