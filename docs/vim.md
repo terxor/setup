@@ -30,7 +30,7 @@ edits:
 - X : delete char before cursor
 - `~[motion]` (use with tildeop)
 
-Note: `_` is considered as part of word,y but other spe\"ial characters are not
+Note: `_` is considered as part of word, but other special characters are not
 
 
 bindings in INSERT mode:

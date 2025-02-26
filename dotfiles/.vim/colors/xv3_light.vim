@@ -5,6 +5,8 @@
 " `xv3_light` theme (gui only)
 " --------------------------------
 
+let g:inherit_termbg = 1
+
 set background=light
 highlight clear
 syntax reset
@@ -89,7 +91,12 @@ function! HgB(group, guibg)
   call HgS(a:group, "", a:guibg, "")
 endfunction
 
-call HgS("Normal", s:fg, s:bg, s:none)
+if g:inherit_termbg
+  call HgS("Normal", s:fg, "", s:none)
+else
+  call HgS("Normal", s:fg, s:bg, s:none)
+endif
+
 call HgS("StatusLine", s:fg,  s:lpurple, s:bold) " Status line color on active/inactive buffers 
 call HgS("StatusLineNC", s:bg, s:alt_purple, "")
 call HgS("CursorLine",   "", s:amber, "")

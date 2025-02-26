@@ -3,7 +3,7 @@
 [window]
 padding = { x = 5, y = 5 }
 dynamic_title = false
-opacity = 0.9
+opacity = 1.0
 
 [scrolling]
 history = 50000
@@ -21,7 +21,7 @@ blinking = "Never"
 
 [colors.primary]
 background = "#ffffff" # 231
-foreground = "#3a3a3a" # 237
+foreground = "#5f5f87" #  60
 
 [colors.selection]
 text       = "#000000" #   0
