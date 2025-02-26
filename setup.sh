@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# --- Utility functions ----------
 print_status() {
   local status=$?
   local message=$1
@@ -17,11 +18,13 @@ print_status() {
   fi
 }
 
-sudo apt-get update -y >/dev/null 2>&1
-print_status "update package list"
-
 is_installed() {
-  dpkg -l | grep -qw "$1"
+  res="$(dpkg-query --show --showformat='${db:Status-Status}\n' "$1")"
+  if [ "$res" = installed ]; then 
+    return 0
+  else
+    return 1
+  fi
 }
 
 install_package() {
@@ -36,6 +39,14 @@ install_package() {
   fi
 }
 
+silent() {
+  $@ >/dev/null 2>&1
+}
+# --------------------------------
+
+silent sudo apt-get update -y
+print_status "update package list"
+
 install_package git
 install_package curl
 install_package tree # Recursive directory listing command
@@ -47,11 +58,16 @@ install_package g++
 install_package build-essential
 install_package zsh
 install_package markdownlint
+install_package fonts-firacode
+install_package alacritty
+install_package tmux
+install_package i3
+install_package stow
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
   print_status "install omz" skip
 else
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended >/dev/null 2>&1
+  silent sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
   print_status "install omz"
   # OMZ installation creates a default .zshrc
   rm -f "$HOME/.zshrc"
@@ -60,61 +76,25 @@ fi
 if [ -d "$HOME/.oh-my-zsh/custom/plugins/fzf-tab" ]; then
   print_status "install fzf-tab" skip
 else
-  git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab >/dev/null 2>&1
+  silent git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
   print_status "install fzf-tab"
 fi
 
-if [ -f "$HOME/bin/ydiff" ]; then
-  print_status "install ydiff" skip
-else
-  mkdir -p "$HOME/bin"
-  curl -s -o $HOME/bin/ydiff https://raw.githubusercontent.com/ymattw/ydiff/master/ydiff.py
-  chmod +x "$HOME/bin/ydiff"
-  print_status "install ydiff"
-fi
-
-# --------------------------------
-# configs setup
-# --------------------------------
 SETUP_REPO=$HOME/workspace/setup
 
 if [ ! -d $SETUP_REPO ]; then
     mkdir -p $SETUP_REPO
-    git clone https://github.com/terxor/setup $SETUP_REPO >/dev/null 2>&1
+    silent git clone https://github.com/terxor/setup $SETUP_REPO
     print_status "clone setup repo"
 else
     print_status "clone setup repo" skip
 fi
 
-copy_file() {
-  local src=$SETUP_REPO/config/$1
-  local tgt=$HOME/$1
-
-  if [ -e "$tgt" ]; then
-    print_status "copy config $1" skip
-  else
-    cp $src $tgt
-    print_status "copy config $1"
-  fi
-}
-
-make_link() {
-  local src=$SETUP_REPO/config/$1
-  local tgt=$HOME/$1
-
-  if [ -L "$tgt" ]; then
-    print_status "make symlink $1" skip
-  else
-    ln -s $src $tgt >/dev/null 2>&1
-    print_status "make symlink $1"
-  fi
-}
-
-make_link .gitconfig
-make_link .zshenv
-make_link .vimrc
-make_link .zshrc
-copy_file .netrc
+# Create dotfiles symlinks
+CUR_DIR=$(pwd)
+cd $SETUP_REPO
+stow -t $HOME dotfiles
+cd $CUR_DIR
 
 if [ "$SHELL" != "$(which zsh)" ]; then
     chsh -s "$(which zsh)"
@@ -122,3 +102,4 @@ if [ "$SHELL" != "$(which zsh)" ]; then
 else
     print_status "switch to zsh" skip
 fi
+

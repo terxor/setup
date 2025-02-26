@@ -1,0 +1,20 @@
+# i3blocks/config
+
+command=/usr/share/i3blocks/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+[volume]
+label=VOL
+instance=Master
+interval=once
+signal=10
+
+[battery]
+label=BAT
+interval=30
+
+[time]
+command=date "+(%a) %b %d, %Y %H:%M:%S"
+interval=15
+

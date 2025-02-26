@@ -1,7 +1,7 @@
 syntax on                         " syntax highlighting
 set nocompatible                  " compatible with vi? no
 set background=light              " affects colors
-set termguicolors                 " better colors in terminal?
+set notermguicolors                 " better colors in terminal?
 set hidden                        " allow modified unsaved buffers and other stuff
 set encoding=utf-8                " just use it
 set scroll=10                     " number of lines to scroll with <C-U>, <C-D>
@@ -30,17 +30,23 @@ set splitright                    " put the new window right of the current one
 set splitbelow                    " put the new window below the current one 
 set autoindent                    " preserve indentation on next line
 set foldmethod=marker             " fold content inside marker (see foldmarker)
+set cursorline                    " easier to spot which line we are at
+set tildeop                       " use motions with tilde (swap case)
+
 
 " -- MAPPINGS --
 let mapleader = " "
+
 inoremap kj <esc>
 vnoremap kj <esc>
 
 map ; $
 
 " format paragraph
-map Q gqip
+" map Q gqip
 
+" Perform single editing action, then visual mode and press '.'
+" to repeat
 vnoremap . :norm.<CR>
 
 command! Config :normal <C-w><C-v><C-l>:e $MYVIMRC<cr>
@@ -54,12 +60,15 @@ vnoremap <leader>p d"+P
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 
-" Switch buffers
-nnoremap <leader>] :bn<CR>
-nnoremap <leader>[ :bp<CR>
+" Quick exit
+nnoremap <leader>q :qa<CR>
 
-" Buffer list
-nnoremap <c-p> :ls<CR>:b
+" Switch buffers TODO Revisit
+" nnoremap <leader>] :bn<CR>
+" nnoremap <leader>[ :bp<CR>
+
+" Buffer list TODO Revisit
+" nnoremap <c-p> :ls<CR>:b
 
 " Makes switching windows easier
 nnoremap <c-j> <c-w>j
@@ -67,9 +76,9 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-" put tab to good use
-nnoremap <tab> %
-vnoremap <tab> %
+" put tab to good use TODO Revisit
+" nnoremap <tab> %
+" vnoremap <tab> %
 
 " clear search by searching for empty string
 nnoremap <leader>/ :let @/=''<CR>
@@ -87,35 +96,67 @@ nnoremap <leader>d :put =strftime('%Y-%m-%d %H:%M:%S')<CR>
 nnoremap <leader>in :%!python3 -m json.tool --indent 2<CR>
 nnoremap <leader>il :%!python3 -m json.tool --indent 2 --json-lines<CR>
 
+" Replace
+vnoremap <leader>r y:<C-u>%s/<C-r>"/<C-r>"/<left>
+nnoremap <leader>r :%s/<C-r><C-w>/<C-r><C-w>/<left>
+
 " -- STATUS LINE --
+function! ShortenPath(path)
+  let maxplen = 50
+  if strlen(a:path) > maxplen
+    let parts = split(a:path, '/')
+    let l:sp = a:path
+    if len(parts) > 2
+      let sparts = []
+      for i in range(len(parts) - 1)
+        call add(sparts, strpart(parts[i], 0, 2))
+      endfor
+      let l:sp = '/' . join(sparts, '/') . '/' . parts[-1]
+    endif
+    if len(l:sp) > maxplen
+      let pref = "..."
+      return pref . strpart(l:sp, len(l:sp) - maxplen + len(pref))
+    else
+      return l:sp
+    endif
+  else
+    return a:path
+  endif
+endfunction
+
+set statusline=%{ShortenPath(expand('%:p'))}\ %=[%l,%c]\ %P
 
 if has("statusline") && !&cp
   set laststatus=2                              " always show the status bar
   set statusline=\ %l/%L\ [col=%v]             " line and column
   set statusline+=\ %{&modified?'MODIFIED':''}   " show modified indicator
   set statusline+=%=                            " left-right separation point
-  set statusline+=\ %{expand('%:p')}            " full file path
+  set statusline+=\ %{ShortenPath(expand('%:p'))}            " full file path
   set statusline+=\ %r                          " readonly indicator
 endif
 
-" Status line color on active/inactive buffers 
-highlight StatusLine    cterm=bold ctermfg=black ctermbg=white    guifg=#000000 guibg=#bfe0ff
-highlight StatusLineNC  cterm=none ctermfg=black ctermbg=darkgrey guifg=#000000 guibg=#cccccc
-
 " Markdown-specific settings
-autocmd FileType markdown setlocal textwidth=80
-autocmd FileType markdown setlocal formatoptions+=t
+augroup MDSettings
+  " syntax region markdownBlockquote start="^>.*$" end="^$" contains=@markdownInline,markdownListText,markdownCodeBlock,markdownHacks keepend extend nextgroup=markdownBlockquote
+  " highlight link markdownBlockquote SpecialComment
+  autocmd FileType markdown syn match markdownBlockquote '^\s*>.*'
+  autocmd FileType markdown syn match markdownLongLine /\%81v.*$/
+  autocmd FileType markdown setlocal textwidth=80
+  autocmd FileType markdown setlocal formatoptions+=t
+  autocmd FileType markdown iabbrev ``` ```<CR>```<Up>
+augroup END
 
-" Highlight long lines for Markdown files
-autocmd FileType markdown highlight LongLine ctermfg=red guifg=red
-autocmd FileType markdown match LongLine /\%81v.*$/
+color xv3_light
 
 " Show cursor line in insert mode
-autocmd InsertEnter,InsertLeave * set cul!
-highlight CursorLine    cterm=none guibg=#efefe7
-highlight CursorLineNr  cterm=bold guibg=#efefe7
+" autocmd InsertEnter,InsertLeave * set cul!
 
-" Customize vertical line separator
-set fillchars=vert:│
-highlight VertSplit guibg=#cfcfc7 guifg=#fffff7
+" Customize vertical line separator: U+2502
+" set fillchars=vert:│
+
+" autocmd OptionSet diff setlocal syntax=off
+if &diff
+syntax off
+set nocursorline
+endif
 

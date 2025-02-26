@@ -25,8 +25,23 @@ PROMPT='%(?:%F{green}OK%f:%F{red}FAILED%f) %F{white}($?)%f
 %F{blue}%~%f%F{red}%(1j. [%j].)%f $(git_prompt_info)'
 
 # git diff aliases to pipe to ydiff
-alias gd="git diff | ydiff -s"
-alias gds="git diff --staged | ydiff -s"
+alias gd="git difftool"
+alias gds="git difftool --staged"
 
 # git status of multiple repositories under a dir
 alias gitstat='find . -maxdepth 1 -mindepth 1 -type d -exec sh -c "(echo {} && cd {} && git status -s && echo)" \;'
+
+alias vim='nvim'
+
+# Only auto-start tmux if:
+# 1. The shell is interactive.
+# 2. You are not already inside a tmux session.
+# 3. No command was passed to the shell.
+if [[ $- == *i* ]] && [ -z "$TMUX" ] && [ $# -eq 0 ]; then
+    tmux attach -t default || tmux new -s default
+fi
+
+# setopt noglob
+# zstyle ':completion:*' expand yes
+
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
