@@ -65,3 +65,7 @@ bindings = [
   { key = "=",  mods = "Control", action = "ReceiveChar" },
 ]
 
+[shell]
+program = 'zsh'
+args = [ '-c', 'tmux' ]
+

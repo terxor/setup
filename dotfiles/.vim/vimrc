@@ -1,37 +1,41 @@
-syntax on                         " syntax highlighting
-set nocompatible                  " compatible with vi? no
-set background=light              " affects colors
-set notermguicolors                 " better colors in terminal?
-set hidden                        " allow modified unsaved buffers and other stuff
-set encoding=utf-8                " just use it
-set scroll=10                     " number of lines to scroll with <C-U>, <C-D>
-set scrolloff=3                   " show more lines near ends while scrolling
-set relativenumber                " relative line numbers
-set incsearch                     " search as you type
-set ignorecase                    " ignore case
-set smartcase                     " case sensitive search when you enter mixed case
-set hlsearch                      " highlight the matching patterns
-set ruler                         " show line num, col in status bar
-set wildmenu                      " shows options on tab while executing commands
-set wildmode=longest:full,full    " show more options?
-set nowrap                        " do not wrap lines
-set tabstop=2                     " tab is 2 spaces
-set shiftwidth=2                  " indents are two spaces
-set expandtab                     " use spaces instead of tab char
-set gdefault                      " substitute flag ':s///g' by default
-set timeout                       " timeout on mapped key sequences
-set timeoutlen=300                " how long to wait, find the right balance
-set showmode                      " shows whether in insert/visual/replace mode
-set showcmd                       " show partial commands below status line
-set autoread                      " auto-reload modified buffers
-set updatecount=0                 " disable swap files
-set belloff=all                   " turn off terminal bell
-set splitright                    " put the new window right of the current one 
-set splitbelow                    " put the new window below the current one 
-set autoindent                    " preserve indentation on next line
-set foldmethod=marker             " fold content inside marker (see foldmarker)
-set cursorline                    " easier to spot which line we are at
-set tildeop                       " use motions with tilde (swap case)
+" vimrc
+" author: terxor
+
+" === OPTIONS ===
+syntax on                           " syntax highlighting
+set nocompatible                    " compatible with vi? no
+set background=light                " affects colors
+set notermguicolors                 " we use terminal colors with xv3_light
+set hidden                          " allow modified unsaved buffers and other stuff
+set encoding=utf-8                  " allow a variety of characters
+set scroll=10                       " number of lines to scroll with <C-U>, <C-D>
+set scrolloff=3                     " show more lines near ends while scrolling
+set relativenumber                  " relative line numbers
+set incsearch                       " search as you type
+set ignorecase                      " ignore case
+set smartcase                       " case sensitive search when you enter mixed case
+set hlsearch                        " highlight the matching patterns
+set ruler                           " show line num, col in status bar
+set wildmenu                        " shows options on tab while executing commands
+set wildmode=longest:full,full      " show more options?
+set nowrap                          " do not wrap lines
+set tabstop=2                       " tab is 2 spaces
+set shiftwidth=2                    " indents are two spaces
+set expandtab                       " use spaces instead of tab char
+set gdefault                        " substitute flag ':s///g' by default
+set timeout                         " timeout on mapped key sequences
+set timeoutlen=300                  " how long to wait, find the right balance
+set showmode                        " shows whether in insert/visual/replace mode
+set showcmd                         " show partial commands below status line
+set autoread                        " auto-reload modified buffers (on certain events)
+set updatecount=0                   " disable swap files
+set belloff=all                     " turn off terminal bell
+set splitright                      " put the new window right of the current one 
+set splitbelow                      " put the new window below the current one 
+set autoindent                      " preserve indentation on next line
+set foldmethod=marker               " fold content inside marker (see foldmarker)
+set cursorline                      " easier to spot which line we are at
+set tildeop                         " use motions with tilde (swap case)
 
 
 " -- MAPPINGS --
@@ -41,9 +45,6 @@ inoremap kj <esc>
 vnoremap kj <esc>
 
 map ; $
-
-" format paragraph
-" map Q gqip
 
 " Perform single editing action, then visual mode and press '.'
 " to repeat
@@ -63,12 +64,13 @@ vnoremap <leader>y "+y
 " Quick exit
 nnoremap <leader>q :qa<CR>
 
-" Switch buffers TODO Revisit
-" nnoremap <leader>] :bn<CR>
-" nnoremap <leader>[ :bp<CR>
+" Relatively faster way of switching buffers without
+" plugins: just press the buffer number and press enter
+nnoremap <leader>b :ls<CR>:b
 
-" Buffer list TODO Revisit
-" nnoremap <c-p> :ls<CR>:b
+" Replace
+vnoremap <leader>r y:<C-u>%s/<C-r>"/<C-r>"/<left>
+nnoremap <leader>r :%s/<C-r><C-w>/<C-r><C-w>/<left>
 
 " Makes switching windows easier
 nnoremap <c-j> <c-w>j
@@ -86,19 +88,13 @@ nnoremap <leader>/ :let @/=''<CR>
 " Hide other windows
 nnoremap <leader>o :only<CR>
 
-" Change case of word
-nnoremap <leader>a viw~
-
 " Remove all whitespaces at line ends
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
+" Additional utils
 nnoremap <leader>d :put =strftime('%Y-%m-%d %H:%M:%S')<CR>
 nnoremap <leader>in :%!python3 -m json.tool --indent 2<CR>
 nnoremap <leader>il :%!python3 -m json.tool --indent 2 --json-lines<CR>
-
-" Replace
-vnoremap <leader>r y:<C-u>%s/<C-r>"/<C-r>"/<left>
-nnoremap <leader>r :%s/<C-r><C-w>/<C-r><C-w>/<left>
 
 " -- STATUS LINE --
 function! ShortenPath(path)

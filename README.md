@@ -15,13 +15,13 @@ Download script, inspect and execute:
 ```
 curl -o /tmp/setup.sh https://raw.githubusercontent.com/terxor/setup/main/setup.sh
 # Inspect setup.sh
-sh -c /tmp/setup.sh
+bash -c /tmp/setup.sh
 ```
 
 Or, directly execute:
 
 ```
-sh -c "$(wget -qO- https://raw.githubusercontent.com/terxor/setup/main/setup.sh)"
+bash -c "$(wget -qO- https://raw.githubusercontent.com/terxor/setup/main/setup.sh)"
 ```
 
 ## Conventions

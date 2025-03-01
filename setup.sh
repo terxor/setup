@@ -1,4 +1,44 @@
-#!/bin/sh
+#!/bin/bash
+
+full=false
+skip_update=false
+
+# Parse command-line flags
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -f|--full)
+      full=true
+      shift
+      ;;
+    -s|--skip_update)
+      skip_update=true
+      shift
+      ;;
+    -d|--debug)
+      debug=true
+      set -x # Enable xtrace debugging
+      shift
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $1"
+      usage
+      exit 1
+      ;;
+  esac
+done
+
+# Usage function
+usage() {
+  echo "Usage: $0 [-f|--full] [-d|--debug] [-s|--skip_update] [-h|--help]"
+  echo "  -f, --full:    Full setup includes non-terminal components"
+  echo "  -s, --skip_update:   Skip package update."
+  echo "  -d, --debug:   Enable debug mode."
+  echo "  -h, --help:    Display this help message."
+}
 
 # --- Utility functions ----------
 print_status() {
@@ -44,8 +84,10 @@ silent() {
 }
 # --------------------------------
 
-silent sudo apt-get update -y
-print_status "update package list"
+if [[ "$skip_update" != "true" ]]; then
+  silent sudo apt-get update -y
+  print_status "update package list"
+fi
 
 install_package git
 install_package curl
@@ -53,21 +95,25 @@ install_package tree # Recursive directory listing command
 install_package htop # Interactive process viewer
 install_package fzf
 install_package silversearcher-ag
-install_package vim-gtk3
+install_package neovim
+# install_package vim-gtk3
 install_package g++
 install_package build-essential
 install_package zsh
 install_package markdownlint
 install_package fonts-firacode
-install_package alacritty
 install_package tmux
-install_package i3
 install_package stow
+
+if [[ "$full" == "true" ]]; then
+  install_package alacritty
+  install_package i3
+fi
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
   print_status "install omz" skip
 else
-  silent sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended >/dev/null 2>&1
   print_status "install omz"
   # OMZ installation creates a default .zshrc
   rm -f "$HOME/.zshrc"
@@ -89,6 +135,10 @@ if [ ! -d $SETUP_REPO ]; then
 else
     print_status "clone setup repo" skip
 fi
+
+# Create dirs which will get populated with other stuff
+# so that stow doesn't link the dir
+mkdir -p $HOME/.config/zsh
 
 # Create dotfiles symlinks
 CUR_DIR=$(pwd)
