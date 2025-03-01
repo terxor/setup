@@ -34,8 +34,8 @@ Note: `_` is considered as part of word, but other special characters are not
 
 
 bindings in INSERT mode:
+- Most useful: <C-w> delete previous word (or till start of current word)
 - <C-T>, <C-D> insert/delete indent in current line
-- <C-w> delete previous word (or till start of current word)
 - <C-y> insert char above the cursor (prev line)
 - Too much optimization? <C-o> execute one command and return to 
   insert mode.
@@ -45,6 +45,8 @@ end of a line, or by a space or tab.  Any number of closing ')', ']', '"'
 and ''' characters may appear after the '.', '!' or '?' before the spaces,
 tabs or end of line.  A paragraph and section boundary is also a sentence
 boundary.
+
+- Formatting text (textwidth based): `gq[motion]`
 
 --------------------------------
 

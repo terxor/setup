@@ -118,7 +118,7 @@ call HgF("LineNr", s:faded)
 call HgB("Visual", s:warn_bg)
 call HgF("Title", s:red)
 call HgB("Search", s:warn_bg)
-call HgB("EndOfBuffer", s:bg)
+" call HgB("EndOfBuffer", s:bg)
 
 call HgF("xv3_CodeBlock", s:blue)
 call HgS("xv3_BoldTitle", s:red, "", s:bold)
