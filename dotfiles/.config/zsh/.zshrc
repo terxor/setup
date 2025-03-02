@@ -61,6 +61,9 @@ alias gds="git difftool --staged"
 # git status of multiple repositories under a dir
 alias gitstat='find . -maxdepth 1 -mindepth 1 -type d -exec sh -c "(echo {} && cd {} && git status -s && echo)" \;'
 
+# show dotfiles/dirs by default but ignore .git
+alias tree='tree -a -I .git'
+
 # --------------------------------
 # utils
 # --------------------------------
