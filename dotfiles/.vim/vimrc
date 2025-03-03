@@ -61,12 +61,16 @@ vnoremap <leader>p d"+P
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 
-" Quick exit
+" Quick exit and save
 nnoremap <leader>q :qa<CR>
+nnoremap <leader>w :wa<CR>
+
+" Quick swap case in word
+nnoremap <leader>c ~iw
 
 " Relatively faster way of switching buffers without
 " plugins: just press the buffer number and press enter
-nnoremap <leader>b :ls<CR>:b
+" nnoremap <leader>b :ls<CR>:b
 
 " Replace
 vnoremap <leader>r y:<C-u>%s/<C-r>"/<C-r>"/<left>
@@ -155,4 +159,10 @@ if &diff
 syntax off
 set nocursorline
 endif
+
+" settings for fzf-vim plugin
+let g:fzf_vim = {}
+let g:fzf_vim.preview_window = []
+nnoremap <leader>e :Files<CR>
+nnoremap <leader>l :Buffers<CR>
 

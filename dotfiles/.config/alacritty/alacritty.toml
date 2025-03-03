@@ -63,6 +63,7 @@ bindings = [
   { key = "+",  mods = "Control", action = "ReceiveChar" },
   { key = "-",  mods = "Control", action = "ReceiveChar" },
   { key = "=",  mods = "Control", action = "ReceiveChar" },
+  { key = "F11", action = "ToggleFullscreen" },
 ]
 
 [shell]

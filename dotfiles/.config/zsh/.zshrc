@@ -1,3 +1,5 @@
+PATH="$HOME/.local/bin:$PATH"
+
 # --------------------------------
 # oh-my-zsh
 # --------------------------------
@@ -33,10 +35,9 @@ PROMPT='%(?:%F{green}OK%f:%F{red}FAILED%f) %F{white}($?)%f
 # exports
 # --------------------------------
 
-PATH="$HOME/.local/bin:$PATH"
 
 # Better colors for fzf results
-FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#757575,bg:#ffffff,hl:#48698a --color=fg+:#000000,bg+:#ffffff,hl+:#5196ad --color=info:#afaf87,prompt:#d7005f,pointer:#af5fff --color=marker:#87ff00,spinner:#af5fff,header:#87afaf'
+FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=light'
 
 # CP utils
 CP_UTILS=$HOME/workspace/cs/cp/util
@@ -67,5 +68,16 @@ alias tree='tree -a -I .git'
 # --------------------------------
 # utils
 # --------------------------------
+
+# vim
+v() {
+  if [[ -d "$1" ]]; then
+    vim "+cd $1"
+  else
+    vim "$@"
+  fi
+}
+
 source $ZDOTDIR/fsearch.zsh
+
 
