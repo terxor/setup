@@ -138,12 +138,13 @@ fi
 # Create dirs which will get populated with other stuff
 # so that stow doesn't link the dir
 mkdir -p $HOME/.config/zsh
+mkdir -p $HOME/.config/nvim
 mkdir -p $HOME/.local/bin
 
 # Create dotfiles symlinks
 CUR_DIR=$(pwd)
 cd $SETUP_REPO
-stow -t $HOME dotfiles
+stow -t $HOME --no-folding dotfiles
 print_status "stow"
 cd $CUR_DIR
 
