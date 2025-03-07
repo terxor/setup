@@ -40,7 +40,9 @@ PROMPT='%(?:%F{green}OK%f:%F{red}FAILED%f) %F{white}($?)%f
 FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=light'
 
 # CP utils
-CP_UTILS=$HOME/workspace/cs/cp/util
+export CP_UTILS=$HOME/workspace/cs/cp/util
+PATH=$PATH:$CP_UTILS/bin
+export CPLUS_INCLUDE_PATH=$CP_UTILS/cpp
 
 # Texlive
 PATH=$PATH:$HOME/bin/texlive/bin/x86_64-linux
@@ -72,7 +74,7 @@ alias tree='tree -a -I .git'
 # vim
 v() {
   if [[ -d "$1" ]]; then
-    vim "+cd $1"
+    vim "+cd $1" "+Files"
   else
     vim "$@"
   fi

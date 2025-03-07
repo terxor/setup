@@ -50,7 +50,7 @@ map ; $
 " to repeat
 vnoremap . :norm.<CR>
 
-command! Config :normal <C-w><C-v><C-l>:e $MYVIMRC<cr>
+command! Config :normal <C-w><C-v><C-l>:e $MYVIMRC<CR>
 
 " paste: in visual mode, paste replaces the selected content
 nnoremap <leader>p "+p
@@ -165,4 +165,6 @@ let g:fzf_vim = {}
 let g:fzf_vim.preview_window = []
 nnoremap <leader>e :Files<CR>
 nnoremap <leader>l :Buffers<CR>
+
+command! Reformat :%!clang-format
 

@@ -82,5 +82,17 @@ Section "InputClass"
 EndSection
 ```
 
+### NPM and language servers
+
+```
+sudo apt install nodejs npm
+sudo npm i -g pyright
+```
+
+```
+sudo apt-get install clangd-19
+sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-19 100
+```
+
 ***
 
