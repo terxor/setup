@@ -167,4 +167,5 @@ nnoremap <leader>e :Files<CR>
 nnoremap <leader>l :Buffers<CR>
 
 command! Reformat :%!clang-format
+set signcolumn=no
 
