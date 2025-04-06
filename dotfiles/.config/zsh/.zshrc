@@ -1,3 +1,5 @@
+PATH="$HOME/.local/bin:$PATH"
+
 # --------------------------------
 # oh-my-zsh
 # --------------------------------
@@ -18,36 +20,41 @@ source $ZSH/oh-my-zsh.sh
 # --------------------------------
 # general
 # --------------------------------
+EDITOR=nvim
+
+# Makes esc work without delay in vi-mode
+KEYTIMEOUT=1
 
 bindkey -M vicmd ';'  end-of-line
-bindkey -M viins 'kj' vi-cmd-mode
-bindkey -M vicmd 'kj' vi-cmd-mode # basically no-op
 
 # The prompt shows status of last command in first line.
 # The full directory (unless ~) in the second line.
 # The j part shows number of suspended jobs
 PROMPT='%(?:%F{green}OK%f:%F{red}FAILED%f) %F{white}($?)%f
-%F{blue}%~%f%F{red}%(1j. [%j].)%f $(git_prompt_info)'
+%F{blue}%~%f%F{red}%(1j. [%j].)%f $(git_prompt_info) %F{white}$(vi_mode_prompt_info)%f
+'
+
+RPROMPT=""
+MODE_INDICATOR="-- NORMAL --"
 
 # --------------------------------
 # exports
 # --------------------------------
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
 
 # Better colors for fzf results
-FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#757575,bg:#ffffff,hl:#48698a --color=fg+:#000000,bg+:#ffffff,hl+:#5196ad --color=info:#afaf87,prompt:#d7005f,pointer:#af5fff --color=marker:#87ff00,spinner:#af5fff,header:#87afaf'
+FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=light'
+
+# QOL
+workspace=$HOME/workspace
+scratch=$workspace/scratch
+tb=$scratch/tmpbuf
+
 
 # CP utils
-CP_UTILS=$HOME/workspace/cs/cp/util
+export CP_UTILS=$HOME/workspace/cs/cp/util
+PATH=$PATH:$CP_UTILS/bin
+export CPLUS_INCLUDE_PATH=$CP_UTILS/cpp
 
 # Texlive
 PATH=$PATH:$HOME/bin/texlive/bin/x86_64-linux
@@ -60,7 +67,6 @@ PATH="$PATH:$HOME/gems/bin"
 # --------------------------------
 
 alias py='python3'
-alias vim='nvim'
 
 # git diff aliases to use vimdiff
 alias gd="git difftool"
@@ -69,8 +75,13 @@ alias gds="git difftool --staged"
 # git status of multiple repositories under a dir
 alias gitstat='find . -maxdepth 1 -mindepth 1 -type d -exec sh -c "(echo {} && cd {} && git status -s && echo)" \;'
 
+# show dotfiles/dirs by default but ignore .git
+alias tree='tree -a -I .git'
+
 # --------------------------------
 # utils
 # --------------------------------
+source $ZDOTDIR/custom.zsh
 source $ZDOTDIR/fsearch.zsh
+
 

@@ -25,18 +25,18 @@ set expandtab                       " use spaces instead of tab char
 set gdefault                        " substitute flag ':s///g' by default
 set timeout                         " timeout on mapped key sequences
 set timeoutlen=300                  " how long to wait, find the right balance
+set ttimeoutlen=1                   " escape sequence timeout, to make escape faster
 set showmode                        " shows whether in insert/visual/replace mode
 set showcmd                         " show partial commands below status line
 set autoread                        " auto-reload modified buffers (on certain events)
 set updatecount=0                   " disable swap files
 set belloff=all                     " turn off terminal bell
-set splitright                      " put the new window right of the current one 
-set splitbelow                      " put the new window below the current one 
+set splitright                      " put the new window right of the current one
+set splitbelow                      " put the new window below the current one
 set autoindent                      " preserve indentation on next line
 set foldmethod=marker               " fold content inside marker (see foldmarker)
 set cursorline                      " easier to spot which line we are at
 set tildeop                         " use motions with tilde (swap case)
-
 
 " -- MAPPINGS --
 let mapleader = " "
@@ -50,7 +50,8 @@ map ; $
 " to repeat
 vnoremap . :norm.<CR>
 
-command! Config :normal <C-w><C-v><C-l>:e $MYVIMRC<cr>
+command! Config :e $MYVIMRC<CR>
+command! TrimWhitespace :%s/\s\+$// | :let @/=''
 
 " paste: in visual mode, paste replaces the selected content
 nnoremap <leader>p "+p
@@ -61,14 +62,12 @@ vnoremap <leader>p d"+P
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 
-" Quick exit
+" Quick exit and save
 nnoremap <leader>q :qa<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>W :w<CR>
 
-" Relatively faster way of switching buffers without
-" plugins: just press the buffer number and press enter
-nnoremap <leader>b :ls<CR>:b
-
-" Replace
+" Smarter replace
 vnoremap <leader>r y:<C-u>%s/<C-r>"/<C-r>"/<left>
 nnoremap <leader>r :%s/<C-r><C-w>/<C-r><C-w>/<left>
 
@@ -78,18 +77,15 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-" put tab to good use TODO Revisit
-" nnoremap <tab> %
-" vnoremap <tab> %
+" Use tab and shift-tab to cycle through buffers
+nnoremap <tab> :bn<CR>
+vnoremap <s-tab> :bp<CR>
 
 " clear search by searching for empty string
 nnoremap <leader>/ :let @/=''<CR>
 
 " Hide other windows
 nnoremap <leader>o :only<CR>
-
-" Remove all whitespaces at line ends
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Additional utils
 nnoremap <leader>d :put =strftime('%Y-%m-%d %H:%M:%S')<CR>
@@ -155,4 +151,18 @@ if &diff
 syntax off
 set nocursorline
 endif
+
+" settings for fzf-vim plugin
+let g:fzf_vim = {}
+let g:fzf_vim.preview_window = []
+nnoremap <leader>e :Files<CR>
+nnoremap <leader>l :Buffers<CR>
+
+command! Reformat :%!clang-format
+set signcolumn=no
+
+" GVIM config
+set guifont=Iosevka\ Term\ 14
+set guioptions=agitc
+set guicursor=n-v-c:block-Cursor,i:block-iCursor,a:blinkon0
 

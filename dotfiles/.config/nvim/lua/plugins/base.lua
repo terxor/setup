@@ -10,6 +10,12 @@ return {
   {
     'tpope/vim-surround',
     version = '*'
+  },
+  {
+    "junegunn/fzf.vim",
+    dependencies = {
+      "junegunn/fzf",
+    }
   }
 }
 

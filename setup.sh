@@ -45,21 +45,20 @@ print_status() {
   local status=$?
   local message=$1
   local skip=$2
-  local width=40
 
   if [ "$skip" = "skip" ]; then
-    printf "%-${width}s \e[90mSKIPPED\e[0m\n" "$message"
+    printf "[\e[33mSKIP\e[0m] %s\n" "$message"
   else
     if [ "$status" -eq 0 ]; then
-      printf "%-${width}s \e[32mDONE\e[0m\n" "$message"
+      printf "[\e[32mDONE\e[0m] %s\n" "$message"
     else
-      printf "%-${width}s \e[31mFAILED\e[0m\n" "$message"
+      printf "[\e[31mFAIL\e[0m] %s\n" "$message"
     fi
   fi
 }
 
 is_installed() {
-  res="$(dpkg-query --show --showformat='${db:Status-Status}\n' "$1")"
+  res="$(dpkg-query --show --showformat='${db:Status-Status}\n' "$1" 2> /dev/null)"
   if [ "$res" = installed ]; then 
     return 0
   else
@@ -93,7 +92,7 @@ install_package git
 install_package curl
 install_package tree # Recursive directory listing command
 install_package htop # Interactive process viewer
-install_package fzf
+# install_package fzf # install manually
 install_package silversearcher-ag
 install_package neovim
 # install_package vim-gtk3
@@ -103,7 +102,7 @@ install_package zsh
 install_package markdownlint
 install_package fonts-firacode
 install_package tmux
-install_package stow
+install_package stow # symlink management
 
 if [[ "$full" == "true" ]]; then
   install_package alacritty
@@ -139,12 +138,27 @@ fi
 # Create dirs which will get populated with other stuff
 # so that stow doesn't link the dir
 mkdir -p $HOME/.config/zsh
+mkdir -p $HOME/.config/nvim
+mkdir -p $HOME/.local/bin
 
 # Create dotfiles symlinks
 CUR_DIR=$(pwd)
 cd $SETUP_REPO
-stow -t $HOME dotfiles
+stow -t $HOME --no-folding dotfiles
+print_status "stow"
 cd $CUR_DIR
+
+if [ "$(which fzf)" ]; then
+  print_status "install fzf" skip
+else
+  FZF_DIR=/tmp/fzf
+  git clone --depth 1 https://github.com/junegunn/fzf.git $FZF_DIR >/dev/null 2>&1
+  $FZF_DIR/install --bin >/dev/null 2>&1
+  print_status "install fzf"
+  mv $FZF_DIR/bin/fzf $HOME/.local/bin/
+  mv $FZF_DIR/shell/*.zsh $HOME/.local/bin/
+  rm -rf $FZF_DIR
+fi
 
 if [ "$SHELL" != "$(which zsh)" ]; then
     chsh -s "$(which zsh)"
