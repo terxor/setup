@@ -20,6 +20,11 @@ local function configure_cmp()
       end,
     },
     window = {
+      completion = {
+        scrollbar = true, -- Optional: Enable scrollbar
+        max_width = 50,    -- Limit the width (adjust as needed)
+        max_height = 10,   -- Limit the height (adjust as needed)
+      },
       -- completion = cmp.config.window.bordered(),
       -- documentation = cmp.config.window.bordered(),
     },
@@ -31,7 +36,7 @@ local function configure_cmp()
       ['<CR>'] = cmp.config.disable,
     }),
     sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
+      { name = 'nvim_lsp', max_item_count = 5 },
       { name = 'vsnip' },
       { name = 'buffer' },
       { name = 'path' },

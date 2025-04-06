@@ -20,16 +20,22 @@ source $ZSH/oh-my-zsh.sh
 # --------------------------------
 # general
 # --------------------------------
+EDITOR=nvim
+
+# Makes esc work without delay in vi-mode
+KEYTIMEOUT=1
 
 bindkey -M vicmd ';'  end-of-line
-bindkey -M viins 'kj' vi-cmd-mode
-bindkey -M vicmd 'kj' vi-cmd-mode # basically no-op
 
 # The prompt shows status of last command in first line.
 # The full directory (unless ~) in the second line.
 # The j part shows number of suspended jobs
 PROMPT='%(?:%F{green}OK%f:%F{red}FAILED%f) %F{white}($?)%f
-%F{blue}%~%f%F{red}%(1j. [%j].)%f $(git_prompt_info)'
+%F{blue}%~%f%F{red}%(1j. [%j].)%f $(git_prompt_info) %F{white}$(vi_mode_prompt_info)%f
+'
+
+RPROMPT=""
+MODE_INDICATOR="-- NORMAL --"
 
 # --------------------------------
 # exports
@@ -38,6 +44,12 @@ PROMPT='%(?:%F{green}OK%f:%F{red}FAILED%f) %F{white}($?)%f
 
 # Better colors for fzf results
 FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=light'
+
+# QOL
+workspace=$HOME/workspace
+scratch=$workspace/scratch
+tb=$scratch/tmpbuf
+
 
 # CP utils
 export CP_UTILS=$HOME/workspace/cs/cp/util
@@ -55,7 +67,6 @@ PATH="$PATH:$HOME/gems/bin"
 # --------------------------------
 
 alias py='python3'
-alias vim='nvim'
 
 # git diff aliases to use vimdiff
 alias gd="git difftool"
@@ -70,16 +81,7 @@ alias tree='tree -a -I .git'
 # --------------------------------
 # utils
 # --------------------------------
-
-# vim
-v() {
-  if [[ -d "$1" ]]; then
-    vim "+cd $1" "+Files"
-  else
-    vim "$@"
-  fi
-}
-
+source $ZDOTDIR/custom.zsh
 source $ZDOTDIR/fsearch.zsh
 
 

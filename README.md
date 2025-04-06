@@ -94,5 +94,9 @@ sudo apt-get install clangd-19
 sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-19 100
 ```
 
+### Iosevka font
+
+https://github.com/be5invis/Iosevka/releases/download/v33.2.0/PkgTTF-IosevkaTerm-33.2.0.zip
+
 ***
 
