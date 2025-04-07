@@ -52,10 +52,29 @@ boundary.
 
 ## Misc example cases
 
+Delete all empty lines:
+
+```
+:g/^$/d
+```
+
+Run macro `a` on all lines matching pattern:
+
+```
+:g/abc/norm @a
+```
+
 How to delete all lines not containing a word `abc`
 ```
-:g!/abc/d
+:v/abc/d
 ```
+
+Count number of times a pattern occurs in the whole file:
+
+```
+:%s/abc//n
+```
+
 
 
 
