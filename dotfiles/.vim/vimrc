@@ -79,7 +79,7 @@ nnoremap <c-l> <c-w>l
 
 " Use tab and shift-tab to cycle through buffers
 nnoremap <tab> :bn<CR>
-vnoremap <s-tab> :bp<CR>
+nnoremap <s-tab> :bp<CR>
 
 " clear search by searching for empty string
 nnoremap <leader>/ :let @/=''<CR>

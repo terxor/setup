@@ -98,5 +98,13 @@ sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-19 100
 
 https://github.com/be5invis/Iosevka/releases/download/v33.2.0/PkgTTF-IosevkaTerm-33.2.0.zip
 
+```
+curl -fsSL -o /tmp/iosevka.zip https://github.com/be5invis/Iosevka/releases/download/v33.2.0/PkgTTF-IosevkaTerm-33.2.0.zip
+mkdir -p /tmp/iosevka ~/.local/share/fonts
+unzip -d /tmp/iosevka /tmp/iosevka.zip
+mv /tmp/iosevka/*.ttf ~/.local/share/fonts
+fc-cache -f -v
+```
+
 ***
 
