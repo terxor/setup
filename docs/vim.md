@@ -75,8 +75,20 @@ Count number of times a pattern occurs in the whole file:
 :%s/abc//n
 ```
 
+From this line to last line, surround all lines with `[]` (this example
+works with surround plugin)
 
+```
+:.,$norm yss]
+```
 
+From this line to first, insert string `prefix` at the beginning:
+
+```
+:0,.norm Iprefix
+```
+
+Note: all of these commands can also run on visual selection
 
 
 

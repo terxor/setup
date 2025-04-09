@@ -14,6 +14,10 @@ local function configure_cmp()
 
   -- Standard insert mode completion
   cmp.setup({
+    -- completion = {
+    --   only show completions when hotkey is pressed (see mapping)
+    --   autocomplete = false
+    -- },
     snippet = {
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body)
@@ -38,7 +42,7 @@ local function configure_cmp()
     sources = cmp.config.sources({
       { name = 'nvim_lsp', max_item_count = 5 },
       { name = 'vsnip' },
-      { name = 'buffer' },
+      { name = 'buffer', keyword_length = 3 },
       { name = 'path' },
     })
   })

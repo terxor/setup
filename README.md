@@ -108,3 +108,10 @@ fc-cache -f -v
 
 ***
 
+TODO: Nvim reproduce error:
+
+it will get stuck right after `no`
+
+```
+:.,$norm
+```
