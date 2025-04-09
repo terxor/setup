@@ -50,6 +50,7 @@ boundary.
 
 --------------------------------
 
+
 ## Misc example cases
 
 Delete all empty lines:
@@ -90,9 +91,38 @@ From this line to first, insert string `prefix` at the beginning:
 
 Note: all of these commands can also run on visual selection
 
+***
 
+Repeat single editing action:
 
+Examples:
+- `dd`
+- `2dw`
+- `10I-<ESC>`
 
+single editing actions can be repeated by `.`
 
+This can also be applied to a visual line selection (each
+line individually).
 
+For example: to delete first 2 words of a set of lines, there are many ways:
+- record macro, execute k times
+- `2dw` for first line, then visual selection followed by `.`
+- `.,.+5norm 2dw` (range based)
 
+***
+
+Scenario: add a blank line after each line in the file.
+
+One way is macro + `g/.*/norm @a` command.
+
+Note: For this case `:norm` won't work as that treats line range as absolute
+and inserting lines change the line range.
+
+A shorter way is `g/^/put _`
+- `_` is the blackhole register which is always empty
+- put inserts a new line with contents of passed register.
+- without arg, it will use default register (so this way you can customize what
+  you insert between each line by first copying that to a register)
+
+***
