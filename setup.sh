@@ -94,7 +94,7 @@ install_package tree # Recursive directory listing command
 install_package htop # Interactive process viewer
 # install_package fzf # install manually
 install_package silversearcher-ag
-install_package neovim
+# install_package neovim
 # install_package vim-gtk3
 install_package g++
 install_package build-essential
@@ -103,6 +103,9 @@ install_package markdownlint
 install_package fonts-firacode
 install_package tmux
 install_package stow # symlink management
+install_package alacritty
+install_package i3
+install_package i3blocks
 
 if [[ "$full" == "true" ]]; then
   install_package alacritty
@@ -159,6 +162,30 @@ else
   mv $FZF_DIR/shell/*.zsh $HOME/.local/bin/
   rm -rf $FZF_DIR
 fi
+
+if [ "$(which nvim)" ]; then
+  print_status "install nvim" skip
+else
+  NVIM_PKG=https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-linux-x86_64.tar.gz
+  curl -fsSL -o /tmp/nvim.tar.gz $NVIM_PKG
+  tar -xzf /tmp/nvim.tar.gz -C $HOME/.local/ --strip-components=1
+  rm /tmp/nvim.tar.gz
+  print_status "install nvim"
+fi
+
+# Install iosevka
+if [ "$(fc-list | grep Iosevka)" ]; then
+  print_status "install font iosevka" skip
+else
+  # IOSEVKA_FONT_URL=https://github.com/be5invis/Iosevka/releases/download/v33.2.1/PkgTTF-Iosevka-33.2.1.zip
+  # curl -fsSL -o /tmp/iosevka.zip $IOSEVKA_FONT_URL
+  # unzip -d /tmp/iosevka /tmp/iosevka.zip
+  mkdir -p $HOME/.local/fonts
+  mv /tmp/iosevka/*.ttf $HOME/.local/share/fonts/
+  fc-cache -f -v
+  print_status "install font iosevka"
+fi
+
 
 if [ "$SHELL" != "$(which zsh)" ]; then
     chsh -s "$(which zsh)"

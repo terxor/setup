@@ -9,8 +9,8 @@ opacity = 1.0
 history = 50000
 
 [font]
-size = 11
-normal = { family = "Iosevka Term" }
+size = 14
+normal = { family = "Iosevka" }
 
 [cursor.style]
 shape = "Block"
@@ -32,27 +32,16 @@ text       = "#ffffff" # 230
 cursor     = "#8787af" # 103
 
 [colors.normal]
-black                 = "#3a3a3a" # 237
-red                   = "#af0000" # 124
-green                 = "#008700" #  28
-yellow                = "#af8700" # 136
-blue                  = "#005f87" #  24
-magenta               = "#870087" #  90
-cyan                  = "#008787" #  30
-white                 = "#808080" # 244
-
-# [colors.bright]
-# black                 = "#073f4d"
-# red                   = "#de3330"
-# green                 = "#42a600"
-# yellow                = "#dbab05"
-# blue                  = "#2377b5"
-# magenta               = "#a925bf"
-# cyan                  = "#2ba69c"
-# white                 = "#a6a195"
+black      = "#3a3a3a" # 237
+red        = "#af0000" # 124
+green      = "#008700" #  28
+yellow     = "#af8700" # 136
+blue       = "#005f87" #  24
+magenta    = "#870087" #  90
+cyan       = "#008787" #  30
+white      = "#808080" # 244
 
 # Disable default keybinds
-
 [mouse]
 bindings = [
   { mouse = "Middle",  action = "ReceiveChar" },
@@ -65,8 +54,4 @@ bindings = [
   { key = "=",  mods = "Control", action = "ReceiveChar" },
   { key = "F11", action = "ToggleFullscreen" },
 ]
-
-[shell]
-program = 'zsh'
-args = [ '-c', 'tmux' ]
 

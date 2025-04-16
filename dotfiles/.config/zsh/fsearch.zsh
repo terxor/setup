@@ -1,26 +1,23 @@
 #!/bin/zsh
 
-fvdirs=(
-  "$HOME/workspace/setup"
-  "$HOME/workspace/scratch"
-)
+# Favourite words/strings utility
+# Usage: press ctrl+f while entering a command to get a searchable list
+# of words
 
-# Fav dirs
-fv_dirs() {
-  local base_dir="$(printf '%s\n' ${fvdirs[@]} | fzf)"
+FVWORDS=$ZDOTDIR/.fvwords
 
-  if [[ -n "$base_dir" ]]; then
-    local target="$(find "$base_dir" -not -path "*/.git/*" -not -path "*/.git" | fzf)"
-    if [[ -n "$target" ]]; then
-      local pre_cursor="${BUFFER:0:$CURSOR}"
-      local post_cursor="${BUFFER:$CURSOR}"
-      BUFFER="$pre_cursor$target$post_cursor"
-      CURSOR=$(( ${#pre_cursor} + ${#target} ))
-    fi
+fvwords() {
+  local word="$(cat $FVWORDS | fzf)"
+
+  if [[ -n "$word" ]]; then
+    local pre_cursor="${BUFFER:0:$CURSOR}"
+    local post_cursor="${BUFFER:$CURSOR}"
+    BUFFER="$pre_cursor$word$post_cursor"
+    CURSOR=$(( ${#pre_cursor} + ${#word} ))
   fi
   zle redisplay
 }
 
-zle -N fv_dirs
-bindkey '^f' fv_dirs
+zle -N fvwords
+bindkey '^f' fvwords
 

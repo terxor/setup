@@ -1,169 +1,85 @@
 " vimrc
 " author: terxor
 
-" === OPTIONS ===
-syntax on                           " syntax highlighting
-set nocompatible                    " compatible with vi? no
-set background=light                " affects colors
-set notermguicolors                 " we use terminal colors with xv3_light
-set hidden                          " allow modified unsaved buffers and other stuff
-set encoding=utf-8                  " allow a variety of characters
-set scroll=10                       " number of lines to scroll with <C-U>, <C-D>
-set scrolloff=3                     " show more lines near ends while scrolling
-set relativenumber                  " relative line numbers
-set incsearch                       " search as you type
-set ignorecase                      " ignore case
-set smartcase                       " case sensitive search when you enter mixed case
-set hlsearch                        " highlight the matching patterns
-set ruler                           " show line num, col in status bar
-set wildmenu                        " shows options on tab while executing commands
-set wildmode=longest:full,full      " show more options?
-set nowrap                          " do not wrap lines
-set tabstop=2                       " tab is 2 spaces
-set shiftwidth=2                    " indents are two spaces
-set expandtab                       " use spaces instead of tab char
-set gdefault                        " substitute flag ':s///g' by default
-set timeout                         " timeout on mapped key sequences
-set timeoutlen=300                  " how long to wait, find the right balance
-set ttimeoutlen=1                   " escape sequence timeout, to make escape faster
-set showmode                        " shows whether in insert/visual/replace mode
-set showcmd                         " show partial commands below status line
-set autoread                        " auto-reload modified buffers (on certain events)
-set updatecount=0                   " disable swap files
-set belloff=all                     " turn off terminal bell
-set splitright                      " put the new window right of the current one
-set splitbelow                      " put the new window below the current one
-set autoindent                      " preserve indentation on next line
-set foldmethod=marker               " fold content inside marker (see foldmarker)
-set cursorline                      " easier to spot which line we are at
-set tildeop                         " use motions with tilde (swap case)
-set pumheight=8                     " limit number of suggestions in pop-up-menu  
+" --- OPTIONS ---
+syntax on                      " syntax highlighting
+set nocompatible               " compatible with vi? no
+set background=light           " affects colors
+set notermguicolors            " we use terminal colors with xv3_light
+set hidden                     " allow modified unsaved buffers
+set encoding=utf-8             " allow a variety of characters
+set relativenumber             " relative line numbers
+set incsearch                  " search as you type
+set ignorecase                 " ignore case
+set smartcase                  " case sensitive search on mixed case
+set hlsearch                   " highlight the matching patterns
+set ruler                      " show line num, col in status bar
+set wildmenu                   " shows options on tab in commands
+set wildmode=longest:full,full " better options list
+set wildoptions=pum            " show pop-up-menu
+set nowrap                     " do not wrap lines
+set tabstop=2                  " tab is 2 spaces
+set softtabstop=2              " insert tab as 2 spaces
+set shiftwidth=2               " indents are two spaces
+set expandtab                  " use spaces instead of tab char
+set gdefault                   " substitute flag ':s///g' by default
+set timeout                    " timeout on mapped key sequences
+set timeoutlen=300             " how long to wait, find the right balance
+set ttimeoutlen=1              " to make escape faster
+set showmode                   " shows whether in insert/visual/replace mode
+set showcmd                    " show partial commands below status line
+set autoread                   " auto-reload modified buffers in some cases
+set updatecount=0              " disable swap files
+set belloff=all                " turn off terminal bell
+set splitright                 " put the new window right of the current one
+set splitbelow                 " put the new window below the current one
+set autoindent                 " preserve indentation on next line
+set foldmethod=marker          " fold content inside marker (see foldmarker)
+set cursorline                 " easier to spot which line we are at
+set tildeop                    " use motions with tilde (swap case)
+color xv3_light
 
-" -- MAPPINGS --
+" --- MAPPINGS ---
 let mapleader = " "
-
-inoremap kj <esc>
-vnoremap kj <esc>
-
 map ; $
-
-" Perform single editing action, then visual mode and press '.'
-" to repeat
-vnoremap . :norm.<CR>
-
-command! Config :e $MYVIMRC<CR>
-command! TrimWhitespace :%s/\s\+$// | :let @/=''
-
-" paste: in visual mode, paste replaces the selected content
-nnoremap <leader>p "+p
-vnoremap <leader>p d"+P
-
-" copy: in visual mode, copy the selected content
-" otherwise, complete the motion
-nnoremap <leader>y "+y
-vnoremap <leader>y "+y
 
 " Quick exit and save
 nnoremap <leader>q :qa<CR>
 nnoremap <leader>w :w<CR>
-nnoremap <leader>W :w<CR>
+nnoremap <leader>d :bd<CR>
+
+" For fzf-vim
+nnoremap <leader>e :Files<CR>
+nnoremap <leader>l :Buffers<CR>
+nnoremap <leader>f :Lines<CR>
+
+" Quick copy (with motion), direct copy in visual mode
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+
+" Quick paste, replaces text in visual mode
+nnoremap <leader>p "+p
+vnoremap <leader>p d"+P
 
 " Smarter replace
-vnoremap <leader>r y:<C-u>%s/<C-r>"/<C-r>"/<left>
-nnoremap <leader>r :%s/<C-r><C-w>/<C-r><C-w>/<left>
-
-" Makes switching windows easier
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
+vnoremap <leader>r y:<C-u>%s/<C-r>"/<C-r>"
+nnoremap <leader>r :%s/<C-r><C-w>/<C-r><C-w>
 
 " Use tab and shift-tab to cycle through buffers
 nnoremap <tab> :bn<CR>
 nnoremap <s-tab> :bp<CR>
 
-" clear search by searching for empty string
-nnoremap <leader>/ :let @/=''<CR>
-
 " Hide other windows
 nnoremap <leader>o :only<CR>
 
-" Additional utils
-nnoremap <leader>d :put =strftime('%Y-%m-%d %H:%M:%S')<CR>
-nnoremap <leader>in :%!python3 -m json.tool --indent 2<CR>
-nnoremap <leader>il :%!python3 -m json.tool --indent 2 --json-lines<CR>
+" clear search by searching for empty string
+nnoremap <leader>/ :let @/=''<CR>
 
-" -- STATUS LINE --
-function! ShortenPath(path)
-  let maxplen = 50
-  if strlen(a:path) > maxplen
-    let parts = split(a:path, '/')
-    let l:sp = a:path
-    if len(parts) > 2
-      let sparts = []
-      for i in range(len(parts) - 1)
-        call add(sparts, strpart(parts[i], 0, 2))
-      endfor
-      let l:sp = '/' . join(sparts, '/') . '/' . parts[-1]
-    endif
-    if len(l:sp) > maxplen
-      let pref = "..."
-      return pref . strpart(l:sp, len(l:sp) - maxplen + len(pref))
-    else
-      return l:sp
-    endif
-  else
-    return a:path
-  endif
-endfunction
+cnoremap <c-k> <up>
+cnoremap <c-j> <down>
 
-set statusline=%{ShortenPath(expand('%:p'))}\ %=[%l,%c]\ %P
-
-if has("statusline") && !&cp
-  set laststatus=2                              " always show the status bar
-  set statusline=\ %l/%L\ [col=%v]             " line and column
-  set statusline+=\ %{&modified?'MODIFIED':''}   " show modified indicator
-  set statusline+=%=                            " left-right separation point
-  set statusline+=\ %{ShortenPath(expand('%:p'))}            " full file path
-  set statusline+=\ %r                          " readonly indicator
-endif
-
-" Markdown-specific settings
-augroup MDSettings
-  " syntax region markdownBlockquote start="^>.*$" end="^$" contains=@markdownInline,markdownListText,markdownCodeBlock,markdownHacks keepend extend nextgroup=markdownBlockquote
-  " highlight link markdownBlockquote SpecialComment
-  autocmd FileType markdown syn match markdownBlockquote '^\s*>.*'
-  autocmd FileType markdown syn match markdownLongLine /\%81v.*$/
-  autocmd FileType markdown setlocal textwidth=80
-  autocmd FileType markdown setlocal formatoptions+=t
-  autocmd FileType markdown iabbrev ``` ```<CR>```<Up>
-augroup END
-
-color xv3_light
-
-" Show cursor line in insert mode
-" autocmd InsertEnter,InsertLeave * set cul!
-
-" Customize vertical line separator: U+2502
-" set fillchars=vert:│
-
-" autocmd OptionSet diff setlocal syntax=off
-if &diff
-syntax off
-set nocursorline
-endif
-
-" settings for fzf-vim plugin
-let g:fzf_vim = {}
-let g:fzf_vim.preview_window = []
-nnoremap <leader>e :Files<CR>
-nnoremap <leader>l :Buffers<CR>
-
-command! Reformat :%!clang-format
-set signcolumn=no
-
-" GVIM config
-set guifont=Iosevka\ Term\ 14
-set guioptions=agitc
-set guicursor=n-v-c:block-Cursor,i:block-iCursor,a:blinkon0
+source $HOME/.vim/status.vim
+source $HOME/.vim/util.vim
+source $HOME/.vim/filetype.vim
+source $HOME/.vim/custom.vim
 

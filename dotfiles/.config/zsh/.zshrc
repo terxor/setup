@@ -1,11 +1,20 @@
 PATH="$HOME/.local/bin:$PATH"
+EDITOR=nvim
+
+# CP utils
+CP_UTILS=$HOME/workspace/cs/cp/util
+PATH=$PATH:$CP_UTILS/bin
+CPLUS_INCLUDE_PATH=$CP_UTILS/cpp
+
+# QOL
+workspace=$HOME/workspace
+scratch=$workspace/scratch
+tb=$scratch/tmpbuf
 
 # --------------------------------
 # oh-my-zsh
 # --------------------------------
-
 ZSH="$HOME/.oh-my-zsh"
-
 ZSH_THEME="robbyrussell"
 
 plugins=(
@@ -20,8 +29,6 @@ source $ZSH/oh-my-zsh.sh
 # --------------------------------
 # general
 # --------------------------------
-EDITOR=nvim
-
 # Makes esc work without delay in vi-mode
 KEYTIMEOUT=1
 
@@ -36,31 +43,8 @@ PROMPT='%(?:%F{green}OK%f:%F{red}FAILED%f) %F{white}($?)%f
 
 RPROMPT=""
 MODE_INDICATOR="-- NORMAL --"
-
-# --------------------------------
-# exports
-# --------------------------------
-
-
 # Better colors for fzf results
 FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=light'
-
-# QOL
-workspace=$HOME/workspace
-scratch=$workspace/scratch
-tb=$scratch/tmpbuf
-
-
-# CP utils
-export CP_UTILS=$HOME/workspace/cs/cp/util
-PATH=$PATH:$CP_UTILS/bin
-export CPLUS_INCLUDE_PATH=$CP_UTILS/cpp
-
-# Texlive
-PATH=$PATH:$HOME/bin/texlive/bin/x86_64-linux
-
-# Gems
-PATH="$PATH:$HOME/gems/bin"
 
 # --------------------------------
 # aliases
@@ -81,7 +65,17 @@ alias tree='tree -a -I .git'
 # --------------------------------
 # utils
 # --------------------------------
-source $ZDOTDIR/custom.zsh
+
+# vim wrapper
+v() {
+  if [[ -d "$1" ]]; then
+    $EDITOR "+cd $1"
+  else
+    $EDITOR "$@"
+  fi
+}
+
 source $ZDOTDIR/fsearch.zsh
+source $ZDOTDIR/custom.zsh
 
 
