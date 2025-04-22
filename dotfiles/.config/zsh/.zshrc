@@ -1,11 +1,6 @@
 PATH="$HOME/.local/bin:$PATH"
 EDITOR=nvim
 
-# CP utils
-CP_UTILS=$HOME/workspace/cs/cp/util
-PATH=$PATH:$CP_UTILS/bin
-CPLUS_INCLUDE_PATH=$CP_UTILS/cpp
-
 # QOL
 workspace=$HOME/workspace
 scratch=$workspace/scratch

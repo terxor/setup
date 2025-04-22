@@ -75,6 +75,9 @@ nnoremap <leader>o :only<CR>
 " clear search by searching for empty string
 nnoremap <leader>/ :let @/=''<CR>
 
+" Quick swapcase in word (W)
+nnoremap <leader>c viW~
+
 cnoremap <c-k> <up>
 cnoremap <c-j> <down>
 

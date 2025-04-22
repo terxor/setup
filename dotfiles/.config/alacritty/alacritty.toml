@@ -9,8 +9,8 @@ opacity = 1.0
 history = 50000
 
 [font]
-size = 14
-normal = { family = "Iosevka" }
+size = 11
+normal = { family = "Iosevka Term" }
 
 [cursor.style]
 shape = "Block"
