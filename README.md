@@ -115,3 +115,14 @@ it will get stuck right after `no`
 ```
 :.,$norm
 ```
+
+***
+
+Set mouse speed and flat accel
+
+```
+xinput set-prop "Logitech Gaming Mouse G402" "Coordinate Transformation Matrix"  0.5 0 0 0 0.5 0 0 0 1
+xinput set-prop "Logitech Gaming Mouse G402" "libinput Accel Profile Enabled"  0 1 0
+```
+
+

@@ -1,11 +1,13 @@
 # .config/i3/config
 
-# Super/Win key
-set $mod Mod4
-
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:monospace 8
+
+default_border normal 5
+
+# Wallpaper
+exec --no-startup-id nitrogen --restore
 
 # Compositor
 exec --no-startup-id picom -b
@@ -19,7 +21,7 @@ font pango:DejaVu Sans Mono 8
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c 000000 --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -42,49 +44,28 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
 bindsym Print exec maim -s | tee ~/Pictures/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png | xclip -selection clipboard -t image/png
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-# move tiling windows via drag & drop by left-clicking into the title bar,
-# or left-clicking anywhere into the window while holding the floating modifier.
-# tiling_drag modifier titlebar
-
-# start a terminal
-bindsym $mod+Return exec alacritty
+# Mod1 is alt, Mod4 is super
+set $mod Mod1
+set $othermod Mod4
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+BackSpace kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
-# A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
-
-# [custom]
-# bindsym $mod+bracketleft workspace prev
-# bindsym $mod+bracketright workspace next
+bindsym $mod+slash exec --no-startup-id dmenu_run
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym Control+$mod+h focus left
+bindsym Control+$mod+j focus down
+bindsym Control+$mod+k focus up
+bindsym Control+$mod+l focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+$othermod+h move left
+bindsym $mod+$othermod+j move down
+bindsym $mod+$othermod+k move up
+bindsym $mod+$othermod+l move right
 
-# split in horizontal orientation
-# bindsym $mod+h split h
-# split in vertical orientation
-# bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
@@ -95,48 +76,38 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
-
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:browser"
-set $ws2 "2:ext1"
-set $ws3 "3:ext2"
-set $ws4 "4:ext3"
-set $ws5 "5:ext4"
-set $ws6 "6:ext5"
-set $ws7 "7:ext6"
-set $ws8 "8:termA"
-set $ws9 "9:termB"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
 
 # switch to workspace
-bindsym $mod+u            workspace number $ws1
-bindsym $mod+i            workspace number $ws2
-bindsym $mod+o            workspace number $ws3
-bindsym $mod+p            workspace number $ws4
-bindsym $mod+bracketleft  workspace number $ws5
-bindsym $mod+bracketright workspace number $ws6
-bindsym $mod+backslash    workspace number $ws7
-bindsym $mod+semicolon    workspace number $ws8
-bindsym $mod+apostrophe   workspace number $ws9
+bindsym $mod+j          workspace number $ws1
+bindsym $mod+k          workspace number $ws2
+bindsym $mod+l          workspace number $ws3
+bindsym $mod+semicolon  workspace number $ws4
+bindsym $mod+apostrophe workspace number $ws5
+bindsym $mod+u          workspace number $ws6
+bindsym $mod+i          workspace number $ws7
+bindsym $mod+o          workspace number $ws8
+bindsym $mod+p          workspace number $ws9
 
 # move focused container to workspace
-bindsym $mod+shift+u            move container to workspace number $ws1
-bindsym $mod+shift+i            move container to workspace number $ws2
-bindsym $mod+shift+o            move container to workspace number $ws3
-bindsym $mod+shift+p            move container to workspace number $ws4
-bindsym $mod+shift+bracketleft  move container to workspace number $ws5
-bindsym $mod+shift+bracketright move container to workspace number $ws6
-bindsym $mod+shift+backslash    move container to workspace number $ws7
-bindsym $mod+shift+semicolon    move container to workspace number $ws8
-bindsym $mod+shift+apostrophe   move container to workspace number $ws9
+bindsym $mod+shift+j          move container to workspace number $ws1
+bindsym $mod+shift+k          move container to workspace number $ws2
+bindsym $mod+shift+l          move container to workspace number $ws3
+bindsym $mod+shift+semicolon  move container to workspace number $ws4
+bindsym $mod+shift+apostrophe move container to workspace number $ws5
+bindsym $mod+shift+u          move container to workspace number $ws5
+bindsym $mod+shift+i          move container to workspace number $ws6
+bindsym $mod+shift+o          move container to workspace number $ws7
+bindsym $mod+shift+p          move container to workspace number $ws8
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -167,11 +138,6 @@ bindsym $mod+r mode "resize"
 
 # exec --no-startup-id i3-msg 'workspace 1:Terminal; exec alacritty; workspace 2:Web; exec firefox; workspace 1:Terminal'
 
-default_border normal 5
-# default_floating_border none 
-
-# Wallpaper
-exec --no-startup-id nitrogen --restore
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -184,8 +150,8 @@ set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) re
 mode "$mode_system" {
     bindsym l exec --no-startup-id loginctl lock-session, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id lock && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id lock && systemctl hibernate, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
 

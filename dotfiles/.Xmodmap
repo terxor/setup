@@ -5,12 +5,6 @@ clear lock
 ! Map Caps Lock to Control
 keycode 66 = Control_L
 
-! Map Left Control to Alt
-keycode 37 = Alt_L
-
-! Map Left Alt to Control
-keycode 64 = Control_L
-
 ! Add the new keysyms to the correct modifiers
 add control = Control_L Control_R
 add mod1 = Alt_L Alt_R
