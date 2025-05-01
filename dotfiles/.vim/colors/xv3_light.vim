@@ -142,7 +142,6 @@ call HgS("Folded", s:fg, s:bg, s:none)
 call HgS("Pmenu", s:alt_purple, s:lpurple, s:none)
 call HgS("PmenuSel", s:lpurple, s:alt_purple, s:none)
 
-
 hi link markdownH1                Title
 hi link markdownCodeBlock         xv3_CodeBlock
 hi link markdownCode              xv3_Code

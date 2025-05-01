@@ -50,18 +50,79 @@ boundary.
 
 --------------------------------
 
+
 ## Misc example cases
+
+Delete all empty lines:
+
+```
+:g/^$/d
+```
+
+Run macro `a` on all lines matching pattern:
+
+```
+:g/abc/norm @a
+```
 
 How to delete all lines not containing a word `abc`
 ```
-:g!/abc/d
+:v/abc/d
 ```
 
+Count number of times a pattern occurs in the whole file:
 
+```
+:%s/abc//n
+```
 
+From this line to last line, surround all lines with `[]` (this example
+works with surround plugin)
 
+```
+:.,$norm yss]
+```
 
+From this line to first, insert string `prefix` at the beginning:
 
+```
+:0,.norm Iprefix
+```
 
+Note: all of these commands can also run on visual selection
 
+***
 
+Repeat single editing action:
+
+Examples:
+- `dd`
+- `2dw`
+- `10I-<ESC>`
+
+single editing actions can be repeated by `.`
+
+This can also be applied to a visual line selection (each
+line individually).
+
+For example: to delete first 2 words of a set of lines, there are many ways:
+- record macro, execute k times
+- `2dw` for first line, then visual selection followed by `.`
+- `.,.+5norm 2dw` (range based)
+
+***
+
+Scenario: add a blank line after each line in the file.
+
+One way is macro + `g/.*/norm @a` command.
+
+Note: For this case `:norm` won't work as that treats line range as absolute
+and inserting lines change the line range.
+
+A shorter way is `g/^/put _`
+- `_` is the blackhole register which is always empty
+- put inserts a new line with contents of passed register.
+- without arg, it will use default register (so this way you can customize what
+  you insert between each line by first copying that to a register)
+
+***
