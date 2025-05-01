@@ -106,6 +106,7 @@ install_package stow # symlink management
 install_package alacritty
 install_package i3
 install_package i3blocks
+install_package feh
 
 if [[ "$full" == "true" ]]; then
   install_package alacritty

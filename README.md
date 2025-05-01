@@ -125,4 +125,15 @@ xinput set-prop "Logitech Gaming Mouse G402" "Coordinate Transformation Matrix" 
 xinput set-prop "Logitech Gaming Mouse G402" "libinput Accel Profile Enabled"  0 1 0
 ```
 
+***
+
+Auto switching:
+
+```
+# autoswitch, add to i3
+autorandr --change
+
+# save profile
+autorandr --save myprofile1
+```
 
