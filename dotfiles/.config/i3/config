@@ -7,7 +7,7 @@ font pango:monospace 8
 default_border normal 5
 
 # Wallpaper
-exec_always feh --bg-fill ~/workspace/backgrounds/car-with-full-moon-background.jpg
+exec_always --no-startup-id feh --bg-fill ~/workspace/scratch/backgrounds/bg-a.jpg
 
 exec --no-startup-id autorandr --change
 # Compositor
@@ -78,14 +78,15 @@ bindsym $mod+Shift+space floating toggle
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
+set $ws1 "1:term"
+set $ws2 "2:K"
+set $ws3 "3:L"
+set $ws4 "4:browser"
+set $ws5 "5:ext"
+set $ws6 "6:U"
+set $ws7 "7:I"
+set $ws8 "8:O"
+set $ws9 "9:P"
 
 # switch to workspace
 bindsym $mod+j          workspace number $ws1
@@ -104,10 +105,10 @@ bindsym $mod+shift+k          move container to workspace number $ws2
 bindsym $mod+shift+l          move container to workspace number $ws3
 bindsym $mod+shift+semicolon  move container to workspace number $ws4
 bindsym $mod+shift+apostrophe move container to workspace number $ws5
-bindsym $mod+shift+u          move container to workspace number $ws5
-bindsym $mod+shift+i          move container to workspace number $ws6
-bindsym $mod+shift+o          move container to workspace number $ws7
-bindsym $mod+shift+p          move container to workspace number $ws8
+bindsym $mod+shift+u          move container to workspace number $ws6
+bindsym $mod+shift+i          move container to workspace number $ws7
+bindsym $mod+shift+o          move container to workspace number $ws8
+bindsym $mod+shift+p          move container to workspace number $ws9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -136,14 +137,12 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# exec --no-startup-id i3-msg 'workspace 1:Terminal; exec alacritty; workspace 2:Web; exec firefox; workspace 1:Terminal'
-
-
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
   status_command i3blocks
   font pango:FiraCode 12
+  strip_workspace_numbers yes
 }
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift-s) shutdown
@@ -160,4 +159,6 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 bindsym $mod+Escape mode "$mode_system"
+
+exec --no-startup-id i3-msg "workspace $ws4; exec firefox; workspace $ws1; exec alacritty"
 

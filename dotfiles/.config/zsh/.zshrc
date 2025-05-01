@@ -11,12 +11,14 @@ tb=$scratch/tmpbuf
 # --------------------------------
 ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
+ZSH_TMUX_AUTOSTART=true
 
 plugins=(
   vi-mode # always keep first, otherwise it breaks fzf and fzf-tab
   git
   fzf
   fzf-tab
+  tmux
 )
 
 source $ZSH/oh-my-zsh.sh

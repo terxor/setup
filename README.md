@@ -70,6 +70,8 @@ curl -o "%USERPROFILE%\AppData\Roaming\alacritty\alacritty.toml" https://raw.git
 
 In  `/etc/X11/xorg.conf.d/touchpad-tap.conf` add the following
 
+tapping and natural scroll
+
 > Note: requires sudo
 
 ```
@@ -79,8 +81,19 @@ Section "InputClass"
         MatchDevicePath "/dev/input/event*"
         Driver "libinput"
         Option "Tapping" "on"
+        Option "Natural Scrolling" "on"
 EndSection
 ```
+
+The method below does it temporarily
+
+```
+# Note: 9 below is the id obtained by first command
+xinput list
+xinput list-props 9
+xinput set-prop 9 "libinput Natural Scrolling Enabled" 1
+```
+
 
 ### NPM and language servers
 
