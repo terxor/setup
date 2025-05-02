@@ -138,6 +138,10 @@ xinput set-prop "Logitech Gaming Mouse G402" "Coordinate Transformation Matrix" 
 xinput set-prop "Logitech Gaming Mouse G402" "libinput Accel Profile Enabled"  0 1 0
 ```
 
+Update: It is better to just copy `./other/mouse.conf` to
+`/etc/X11/xorg.conf.d/` for persistent changes (requires sudo)
+
+
 ***
 
 Auto switching of displays:
