@@ -94,6 +94,7 @@ install_package tree # Recursive directory listing command
 install_package htop # Interactive process viewer
 # install_package fzf # install manually
 install_package silversearcher-ag
+install_package ripgrep
 install_package vim-gtk3
 install_package g++
 install_package build-essential

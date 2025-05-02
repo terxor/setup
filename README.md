@@ -140,7 +140,7 @@ xinput set-prop "Logitech Gaming Mouse G402" "libinput Accel Profile Enabled"  0
 
 ***
 
-Auto switching:
+Auto switching of displays:
 
 ```
 # autoswitch, add to i3
@@ -148,5 +148,14 @@ autorandr --change
 
 # save profile
 autorandr --save myprofile1
+```
+
+***
+
+Brightness controls
+
+```
+sudo apt install brightnessctl
+sudo chmod +s $(which brightnessctl)
 ```
 
