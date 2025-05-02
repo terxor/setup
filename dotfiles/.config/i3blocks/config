@@ -5,6 +5,7 @@ separator_block_width=15
 markup=none
 
 [volume]
+command=~/.config/i3blocks/volume_bar
 label=VOL
 instance=Master
 interval=once
@@ -12,9 +13,10 @@ signal=10
 
 [battery]
 label=BAT
-interval=30
+command=~/.config/i3blocks/battery_bar
+interval=5
 
 [time]
-command=date "+(%a) %b %d, %Y %H:%M:%S"
+command=date "+%d-%b %A %H:%M"
 interval=15
 

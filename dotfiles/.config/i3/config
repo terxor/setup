@@ -7,7 +7,7 @@ font pango:monospace 8
 default_border normal 5
 
 # Wallpaper
-exec_always --no-startup-id feh --bg-fill ~/workspace/scratch/backgrounds/bg-a.jpg
+exec_always --no-startup-id feh --bg-fill --randomize ~/workspace/backgrounds/
 
 exec --no-startup-id autorandr --change
 # Compositor
@@ -36,7 +36,7 @@ exec --no-startup-id xset s off -dpms
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 10%+ && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 10%- && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute 0 toggle && $refresh_i3status
+bindsym XF86AudioMute        exec --no-startup-id amixer set Master toggle && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMicMute     exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Make brightness buttons functional
@@ -78,10 +78,10 @@ bindsym $mod+Shift+space floating toggle
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:term"
+set $ws1 "1:J"
 set $ws2 "2:K"
 set $ws3 "3:L"
-set $ws4 "4:browser"
+set $ws4 "4:-"
 set $ws5 "5:ext"
 set $ws6 "6:U"
 set $ws7 "7:I"
