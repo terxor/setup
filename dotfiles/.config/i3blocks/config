@@ -18,11 +18,10 @@ color=#afafd7
 
 [battery]
 command=~/.config/i3blocks/battery_bar
-interval=5
+interval=3
 
 [time]
 command=date "+%d-%b %A %H:%M"
 interval=15
 color=#87d7ff	
-
 

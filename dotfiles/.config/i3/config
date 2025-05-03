@@ -52,8 +52,10 @@ set $othermod Mod4
 # kill focused window
 bindsym $mod+BackSpace kill
 
-# start dmenu (a program launcher)
-bindsym $mod+slash exec --no-startup-id dmenu_run
+# start a program launcher
+bindsym $mod+slash exec --no-startup-id rofi -show run
+
+bindsym $mod+q exec --no-startup-id $HOME/.config/i3/system_actions.sh
 
 # change focus
 bindsym Control+$mod+h focus left
@@ -76,66 +78,41 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
+bindsym $mod+semicolon workspace back_and_forth
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1:J"
 set $ws2 "2:K"
 set $ws3 "3:L"
-set $ws4 "4:-"
-set $ws5 "5:ext"
-set $ws6 "6:U"
-set $ws7 "7:I"
-set $ws8 "8:O"
-set $ws9 "9:P"
+set $ws4 "4:U"
+set $ws5 "5:I"
+set $ws6 "6:O"
+set $ws7 "7:P"
 
 # switch to workspace
-bindsym $mod+j          workspace number $ws1
-bindsym $mod+k          workspace number $ws2
-bindsym $mod+l          workspace number $ws3
-bindsym $mod+semicolon  workspace number $ws4
-bindsym $mod+apostrophe workspace number $ws5
-bindsym $mod+u          workspace number $ws6
-bindsym $mod+i          workspace number $ws7
-bindsym $mod+o          workspace number $ws8
-bindsym $mod+p          workspace number $ws9
+bindsym $mod+j workspace number $ws1
+bindsym $mod+k workspace number $ws2
+bindsym $mod+l workspace number $ws3
+bindsym $mod+u workspace number $ws4
+bindsym $mod+i workspace number $ws5
+bindsym $mod+o workspace number $ws6
+bindsym $mod+p workspace number $ws7
 
 # move focused container to workspace
-bindsym $mod+shift+j          move container to workspace number $ws1
-bindsym $mod+shift+k          move container to workspace number $ws2
-bindsym $mod+shift+l          move container to workspace number $ws3
-bindsym $mod+shift+semicolon  move container to workspace number $ws4
-bindsym $mod+shift+apostrophe move container to workspace number $ws5
-bindsym $mod+shift+u          move container to workspace number $ws6
-bindsym $mod+shift+i          move container to workspace number $ws7
-bindsym $mod+shift+o          move container to workspace number $ws8
-bindsym $mod+shift+p          move container to workspace number $ws9
+bindsym $mod+shift+j move container to workspace number $ws1
+bindsym $mod+shift+k move container to workspace number $ws2
+bindsym $mod+shift+l move container to workspace number $ws3
+bindsym $mod+shift+u move container to workspace number $ws4
+bindsym $mod+shift+i move container to workspace number $ws5
+bindsym $mod+shift+o move container to workspace number $ws6
+bindsym $mod+shift+p move container to workspace number $ws7
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width  10 px or 10 ppt
-        bindsym j resize grow   height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow   width  10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
-
-bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -150,21 +127,6 @@ bar {
   }
 }
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift-s) shutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id loginctl lock-session, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+Escape mode "$mode_system"
-
 # Set inner/outer gaps
 gaps inner 5
 gaps outer 10
@@ -174,5 +136,6 @@ for_window [class=".*"] border pixel 0
 # Publish window change events (for i3blocks title)
 exec_always --no-startup-id while :; do i3-msg -t subscribe '[ "window" ]' | grep -m 1 focus && pkill -SIGRTMIN+11 i3blocks; done
 
-exec --no-startup-id i3-msg "workspace $ws4; exec firefox; workspace $ws1; exec alacritty"
+# Startup applications
+exec --no-startup-id i3-msg "workspace $ws2; exec firefox; workspace $ws1; exec alacritty"
 
