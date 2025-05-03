@@ -94,8 +94,8 @@ install_package tree # Recursive directory listing command
 install_package htop # Interactive process viewer
 # install_package fzf # install manually
 install_package silversearcher-ag
-# install_package neovim
-# install_package vim-gtk3
+install_package ripgrep
+install_package vim-gtk3
 install_package g++
 install_package build-essential
 install_package zsh
@@ -107,11 +107,13 @@ install_package alacritty
 install_package i3
 install_package i3blocks
 install_package feh
+install_package picom
+install_package xclip
+install_package autorandr
+install_package autokey-gtk
+install_package rofi
+install_package network-manager-applet
 
-if [[ "$full" == "true" ]]; then
-  install_package alacritty
-  install_package i3
-fi
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
   print_status "install omz" skip
@@ -178,10 +180,10 @@ fi
 if [ "$(fc-list | grep Iosevka)" ]; then
   print_status "install font iosevka" skip
 else
-  # IOSEVKA_FONT_URL=https://github.com/be5invis/Iosevka/releases/download/v33.2.1/PkgTTF-Iosevka-33.2.1.zip
-  # curl -fsSL -o /tmp/iosevka.zip $IOSEVKA_FONT_URL
-  # unzip -d /tmp/iosevka /tmp/iosevka.zip
-  mkdir -p $HOME/.local/fonts
+  IOSEVKA_FONT_URL=https://github.com/be5invis/Iosevka/releases/download/v33.2.2/PkgTTF-IosevkaTerm-33.2.2.zip
+  curl -fsSL -o /tmp/iosevka.zip $IOSEVKA_FONT_URL
+  unzip -d /tmp/iosevka /tmp/iosevka.zip
+  mkdir -p $HOME/.local/share/fonts
   mv /tmp/iosevka/*.ttf $HOME/.local/share/fonts/
   fc-cache -f -v
   print_status "install font iosevka"

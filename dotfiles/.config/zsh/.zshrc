@@ -1,22 +1,24 @@
-PATH="$HOME/.local/bin:$PATH"
-EDITOR=nvim
+export PATH="$HOME/.local/bin:$PATH"
+export EDITOR=nvim
 
 # QOL
-workspace=$HOME/workspace
-scratch=$workspace/scratch
-tb=$scratch/tmpbuf
+export workspace=$HOME/workspace
+export scratch=$workspace/scratch
+export tb=$scratch/tmpbuf
 
 # --------------------------------
 # oh-my-zsh
 # --------------------------------
 ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
+ZSH_TMUX_AUTOSTART=true
 
 plugins=(
   vi-mode # always keep first, otherwise it breaks fzf and fzf-tab
   git
   fzf
   fzf-tab
+  tmux
 )
 
 source $ZSH/oh-my-zsh.sh

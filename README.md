@@ -70,6 +70,8 @@ curl -o "%USERPROFILE%\AppData\Roaming\alacritty\alacritty.toml" https://raw.git
 
 In  `/etc/X11/xorg.conf.d/touchpad-tap.conf` add the following
 
+tapping and natural scroll
+
 > Note: requires sudo
 
 ```
@@ -79,8 +81,19 @@ Section "InputClass"
         MatchDevicePath "/dev/input/event*"
         Driver "libinput"
         Option "Tapping" "on"
+        Option "Natural Scrolling" "on"
 EndSection
 ```
+
+The method below does it temporarily
+
+```
+# Note: 9 below is the id obtained by first command
+xinput list
+xinput list-props 9
+xinput set-prop 9 "libinput Natural Scrolling Enabled" 1
+```
+
 
 ### NPM and language servers
 
@@ -125,9 +138,13 @@ xinput set-prop "Logitech Gaming Mouse G402" "Coordinate Transformation Matrix" 
 xinput set-prop "Logitech Gaming Mouse G402" "libinput Accel Profile Enabled"  0 1 0
 ```
 
+Update: It is better to just copy `./other/mouse.conf` to
+`/etc/X11/xorg.conf.d/` for persistent changes (requires sudo)
+
+
 ***
 
-Auto switching:
+Auto switching of displays:
 
 ```
 # autoswitch, add to i3
@@ -136,4 +153,36 @@ autorandr --change
 # save profile
 autorandr --save myprofile1
 ```
+
+***
+
+Brightness controls
+
+```
+sudo apt install brightnessctl
+sudo chmod +s $(which brightnessctl)
+```
+
+***
+
+Audio auto-mute on headphone plugged in
+
+```
+amixer scontrols
+amixer -c 0 sget "Auto-Mute Mode"
+amixer -c 0 sset "Auto-Mute Mode" Enabled
+```
+
+***
+
+Hide `EN` in i3 status bar:
+
+Open `ibus-setup` and uncheck box related to 'show in tray'.
+
+***
+
+Creating custom mappings through autokey: one script per mapping
+
+***
+
 
