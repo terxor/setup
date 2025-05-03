@@ -179,5 +179,10 @@ Hide `EN` in i3 status bar:
 
 Open `ibus-setup` and uncheck box related to 'show in tray'.
 
+***
+
+Creating custom mappings through autokey: one script per mapping
+
+***
 
 

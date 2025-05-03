@@ -6,10 +6,19 @@ font pango:monospace 8
 
 default_border normal 0
 
+# Mod1 is alt, Mod4 is super
+set $mod Mod1
+set $othermod Mod4
+
 # Wallpaper
-exec_always --no-startup-id feh --bg-fill --randomize ~/workspace/backgrounds/
+exec_always --no-startup-id feh --bg-fill ~/workspace/backgrounds/japan-walk.webp
+bindsym $mod+w exec --no-startup-id feh --bg-fill --randomize ~/workspace/backgrounds/
 
 exec --no-startup-id autorandr --change
+
+# Autokey
+exec --no-startup-id autokey
+
 # Compositor
 exec --no-startup-id picom -b
 
@@ -45,9 +54,6 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
 bindsym Print exec maim -s | tee ~/Pictures/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png | xclip -selection clipboard -t image/png
 
-# Mod1 is alt, Mod4 is super
-set $mod Mod1
-set $othermod Mod4
 
 # kill focused window
 bindsym $mod+BackSpace kill
@@ -72,7 +78,7 @@ bindsym $mod+$othermod+l move right
 bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -134,7 +140,7 @@ gaps top 0
 for_window [class=".*"] border pixel 0
 
 # Publish window change events (for i3blocks title)
-exec_always --no-startup-id while :; do i3-msg -t subscribe '[ "window" ]' | grep -m 1 focus && pkill -SIGRTMIN+11 i3blocks; done
+exec --no-startup-id while :; do i3-msg -t subscribe '[ "window" ]' | grep -m 1 focus && pkill -SIGRTMIN+11 i3blocks; done
 
 # Startup applications
 exec --no-startup-id i3-msg "workspace $ws2; exec firefox; workspace $ws1; exec alacritty"
