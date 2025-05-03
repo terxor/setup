@@ -110,6 +110,10 @@ install_package feh
 install_package picom
 install_package xclip
 install_package autorandr
+install_package autokey-gtk
+install_package rofi
+install_package network-manager-applet
+
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
   print_status "install omz" skip
