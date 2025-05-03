@@ -4,19 +4,25 @@ command=/usr/share/i3blocks/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
+[title]
+command=xdotool getactivewindow getwindowname 2> /dev/null || echo ""
+interval=once
+signal=11
+
 [volume]
 command=~/.config/i3blocks/volume_bar
-label=VOL
 instance=Master
 interval=once
 signal=10
+color=#afafd7
 
 [battery]
-label=BAT
 command=~/.config/i3blocks/battery_bar
 interval=5
 
 [time]
 command=date "+%d-%b %A %H:%M"
 interval=15
+color=#87d7ff	
+
 

@@ -163,3 +163,13 @@ sudo apt install brightnessctl
 sudo chmod +s $(which brightnessctl)
 ```
 
+***
+
+Audio auto-mute on headphone plugged in
+
+```
+amixer scontrols
+amixer -c 0 sget "Auto-Mute Mode"
+amixer -c 0 sset "Auto-Mute Mode" Enabled
+```
+

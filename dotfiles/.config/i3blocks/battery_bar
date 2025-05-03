@@ -53,6 +53,6 @@ else
 fi
 
 # Output (need to output color in 3rd line)
-echo "$bar"
-echo "$bar"
+echo "B:$bar"
+echo "B:$bar"
 echo "$fill_color"

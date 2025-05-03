@@ -25,5 +25,5 @@ if (( empty_slots > 0 )); then
 fi
 bar+="]"
 
-echo "$bar"
+echo "V:$bar"
 

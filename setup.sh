@@ -107,6 +107,7 @@ install_package alacritty
 install_package i3
 install_package i3blocks
 install_package feh
+install_package picom
 install_package xclip
 install_package autorandr
 

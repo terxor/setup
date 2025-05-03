@@ -1,10 +1,10 @@
-PATH="$HOME/.local/bin:$PATH"
-EDITOR=nvim
+export PATH="$HOME/.local/bin:$PATH"
+export EDITOR=nvim
 
 # QOL
-workspace=$HOME/workspace
-scratch=$workspace/scratch
-tb=$scratch/tmpbuf
+export workspace=$HOME/workspace
+export scratch=$workspace/scratch
+export tb=$scratch/tmpbuf
 
 # --------------------------------
 # oh-my-zsh
