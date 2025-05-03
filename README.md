@@ -173,3 +173,11 @@ amixer -c 0 sget "Auto-Mute Mode"
 amixer -c 0 sset "Auto-Mute Mode" Enabled
 ```
 
+***
+
+Hide `EN` in i3 status bar:
+
+Open `ibus-setup` and uncheck box related to 'show in tray'.
+
+
+
