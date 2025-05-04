@@ -1,3 +1,5 @@
+source $ZDOTDIR/custom_pre.zsh
+# --------------------------------
 export PATH="$HOME/.local/bin:$PATH"
 export EDITOR=nvim
 
@@ -12,6 +14,9 @@ export tb=$scratch/tmpbuf
 ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 ZSH_TMUX_AUTOSTART=true
+
+DISABLE_AUTO_UPDATE=true
+zstyle ':omz:update' mode disabled
 
 plugins=(
   vi-mode # always keep first, otherwise it breaks fzf and fzf-tab
@@ -72,7 +77,7 @@ v() {
   fi
 }
 
-source $ZDOTDIR/fsearch.zsh
-source $ZDOTDIR/custom.zsh
+source $ZDOTDIR/fv.zsh
+source $ZDOTDIR/custom_post.zsh
 
 

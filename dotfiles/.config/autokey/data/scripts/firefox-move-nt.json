@@ -1,6 +1,6 @@
 {
     "type": "script",
-    "description": "firefox-prev-tab",
+    "description": "firefox-move-nt",
     "store": {},
     "modes": [
         3
@@ -19,9 +19,10 @@
     },
     "hotkey": {
         "modifiers": [
-            "<ctrl>"
+            "<ctrl>",
+            "<shift>"
         ],
-        "hotKey": "p"
+        "hotKey": "n"
     },
     "filter": {
         "regex": "Navigator.firefox_firefox",

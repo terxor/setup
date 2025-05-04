@@ -4,7 +4,7 @@
 # Usage: press ctrl+f while entering a command to get a searchable list
 # of words
 
-FVWORDS=$ZDOTDIR/.fvwords
+FVWORDS=$ZDOTDIR/.fvlist
 
 fvwords() {
   local word="$(cat $FVWORDS | fzf)"

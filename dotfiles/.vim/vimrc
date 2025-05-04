@@ -52,6 +52,7 @@ nnoremap <leader>d :bd<CR>
 nnoremap <leader>e :Files<CR>
 nnoremap <leader>l :Buffers<CR>
 nnoremap <leader>f :Lines<CR>
+nnoremap <leader>s :Rg ''<CR>
 
 " Quick copy (with motion), direct copy in visual mode
 nnoremap <leader>y "+y
