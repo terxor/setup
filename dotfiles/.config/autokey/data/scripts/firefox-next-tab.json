@@ -5,7 +5,7 @@
     "modes": [
         3
     ],
-    "usageCount": 41,
+    "usageCount": 45,
     "prompt": false,
     "omitTrigger": false,
     "showInTrayMenu": false,
@@ -21,7 +21,7 @@
         "modifiers": [
             "<ctrl>"
         ],
-        "hotKey": "j"
+        "hotKey": "n"
     },
     "filter": {
         "regex": "Navigator.firefox_firefox",
