@@ -12,28 +12,6 @@ highlight clear
 syntax reset
 
 " Colors
-" let s:alt_green  = "#619e23"
-" let s:bg         = "#fffff7"
-" let s:blue       = "#0f6da3"
-" let s:brown      = "#8a5345"
-" let s:dark_brown = "#4f0e02"
-" let s:dark_green = "#6bc90c"
-" let s:faded      = "#80827e"
-" let s:fg         = "#404040"
-" let s:green      = "#547d2a"
-" let s:grey       = "#cff0ff"
-" let s:lblue      = "#bfe0ff"
-" let s:lgrey      = "#cccccc"
-" let s:off_white  = "#efefe7"
-" let s:purple     = "#3d2687"
-" let s:red        = "#8c1c1c"
-" let s:teal       = "#3f8f8b"
-" let s:unset      = "#00ff00"
-" let s:warn_bg    = "#fde293"
-" let s:warn_fg    = "#ea8600"
-" let s:yellow     = "#ba8c00"
-" let s:amber     = "#ffffd7"
-"
 let s:alt_green  = "106"
 let s:bg         = "231"
 let s:blue       = "24"
@@ -44,6 +22,7 @@ let s:faded      = "102"
 let s:fg         = "238"
 let s:green      = "64"
 let s:grey       = "195"
+let s:grey_alt   = "145"
 let s:lblue      = "153"
 let s:lgrey      = "252"
 let s:off_white  = "254"
@@ -117,13 +96,15 @@ call HgS("Todo", s:red, s:bg, s:bold)
 call HgF("LineNr", s:faded)
 call HgB("Visual", s:warn_bg)
 call HgF("Title", s:red)
-call HgB("Search", s:warn_bg)
+call HgS("Search", s:fg, s:lblue, "")
+call HgS("CurSearch", s:fg, s:lblue, s:bold)
 " call HgB("EndOfBuffer", s:bg)
 
 call HgF("xv3_CodeBlock", s:blue)
 call HgS("xv3_BoldTitle", s:red, "", s:bold)
 call HgF("xv3_Code", s:purple)
 call HgF("xv3_Faded", s:faded)
+call HgF("xv3_Grey", s:grey_alt)
 call HgF("xv3_WarnFg", s:warn_fg)
 call HgS("xv3_Warn", "", s:warn_bg, "")
 
@@ -153,7 +134,7 @@ hi link markdownEmphasis          Normal
 hi link markdownStrong            Normal
 hi link markdownBold          Normal
 hi link markdownItalic            Normal
-hi link markdownLongLine          xv3_WarnFg
+hi link markdownLongLine          xv3_Grey
 hi link markdownError             xv3_Warn
 
 set fillchars=eob:\ ,vert:\  " Note: space
