@@ -183,6 +183,24 @@ Open `ibus-setup` and uncheck box related to 'show in tray'.
 
 Creating custom mappings through autokey: one script per mapping
 
+## Browser mappings (intended)
+
+| Action           | Key          | Default? |
+| --------         | -----        | ---      |
+| Next tab         | ctrl+n       | NO       |
+| Prev tab         | ctrl+p       | NO       |
+| Move to Next tab | ctrl+shift+n | NO       |
+| Move to Prev tab | ctrl+shift+p | NO       |
+| Delete word      | ctrl+w       | NO       |
+| Close tab        | ctrl+q       | NO       |
+| Bookmark         | ctrl+b       | NO       |
+| Duplicate        | ctrl+d       | NO       |
+| Back             | ctrl+[       | YES      |
+| Fwd              | ctrl+]       | YES      |
+| Edit address     | ctrl+l       | YES      |
+| New tab          | ctrl+t       | YES      |
+
+
 ***
 
 

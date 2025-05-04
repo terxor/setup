@@ -1,6 +1,6 @@
 {
     "type": "script",
-    "description": "firefox-prev-tab",
+    "description": "firefox-close",
     "store": {},
     "modes": [
         3
@@ -21,7 +21,7 @@
         "modifiers": [
             "<ctrl>"
         ],
-        "hotKey": "p"
+        "hotKey": "q"
     },
     "filter": {
         "regex": "Navigator.firefox_firefox",

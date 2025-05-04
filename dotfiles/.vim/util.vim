@@ -18,3 +18,7 @@ endif
 " settings for fzf-vim plugin
 let g:fzf_vim = {}
 let g:fzf_vim.preview_window = []
+
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --hidden --no-ignore --glob '!.git/*' --column --line-number --no-heading --color=always --smart-case " .
+            \ <q-args>, 1, <bang>0)
+

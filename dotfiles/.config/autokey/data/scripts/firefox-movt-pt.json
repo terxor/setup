@@ -1,6 +1,6 @@
 {
     "type": "script",
-    "description": "firefox-prev-tab",
+    "description": "firefox-move-pt",
     "store": {},
     "modes": [
         3
@@ -19,7 +19,8 @@
     },
     "hotkey": {
         "modifiers": [
-            "<ctrl>"
+            "<ctrl>",
+            "<shift>"
         ],
         "hotKey": "p"
     },
