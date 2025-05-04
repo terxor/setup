@@ -8,7 +8,6 @@ command! CopyFileName :let @+ = expand('%:t') | echo 'Copied: ' . @+
 command! CopyFilePath :let @+ = expand('%:p') | echo 'Copied: ' . @+
 command! Reformat :%!clang-format
 command! Timestamp :put =strftime('%Y-%m-%d %H:%M:%S')
-command! Search Rg
 
 " autocmd OptionSet diff setlocal syntax=off
 if &diff
