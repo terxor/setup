@@ -200,6 +200,14 @@ Creating custom mappings through autokey: one script per mapping
 | Edit address     | ctrl+l       | YES      |
 | New tab          | ctrl+t       | YES      |
 
+### Firefox config
+
+In `about:config`:
+
+```
+ui.prefersReducedMotion -> set to number 1
+ui.key.menuAccessKeyFocuses -> false
+```
 
 ***
 

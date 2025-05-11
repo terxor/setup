@@ -16,8 +16,8 @@ bindsym $mod+w exec --no-startup-id feh --bg-fill --randomize ~/workspace/backgr
 
 exec --no-startup-id autorandr --change
 
-# Autokey
-exec --no-startup-id autokey
+# Keymapper
+exec --no-startup-id keymapper
 
 # Compositor
 exec --no-startup-id picom -b
@@ -31,7 +31,7 @@ font pango:DejaVu Sans Mono 8
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c 1c1c28 --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i ~/workspace/backgrounds/lockscreen.png --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -56,7 +56,7 @@ bindsym Print exec maim -s | tee ~/Pictures/screenshot-$(date +%Y-%m-%d_%H-%M-%S
 
 
 # kill focused window
-bindsym $mod+BackSpace kill
+bindsym $mod+Shift+BackSpace kill
 
 # start a program launcher
 bindsym $mod+slash exec --no-startup-id rofi -show run
@@ -88,31 +88,37 @@ bindsym $mod+semicolon workspace back_and_forth
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:J"
-set $ws2 "2:K"
-set $ws3 "3:L"
-set $ws4 "4:U"
-set $ws5 "5:I"
-set $ws6 "6:O"
-set $ws7 "7:P"
+set $ws1 "1:H"
+set $ws2 "2:J"
+set $ws3 "3:K"
+set $ws4 "4:L"
+set $ws5 "5:Y"
+set $ws6 "6:U"
+set $ws7 "7:I"
+set $ws8 "8:O"
+set $ws9 "9:P"
 
 # switch to workspace
-bindsym $mod+j workspace number $ws1
-bindsym $mod+k workspace number $ws2
-bindsym $mod+l workspace number $ws3
-bindsym $mod+u workspace number $ws4
-bindsym $mod+i workspace number $ws5
-bindsym $mod+o workspace number $ws6
-bindsym $mod+p workspace number $ws7
+bindsym $mod+h workspace number $ws1
+bindsym $mod+j workspace number $ws2
+bindsym $mod+k workspace number $ws3
+bindsym $mod+l workspace number $ws4
+bindsym $mod+y workspace number $ws5
+bindsym $mod+u workspace number $ws6
+bindsym $mod+i workspace number $ws7
+bindsym $mod+o workspace number $ws8
+bindsym $mod+p workspace number $ws9
 
 # move focused container to workspace
-bindsym $mod+shift+j move container to workspace number $ws1
-bindsym $mod+shift+k move container to workspace number $ws2
-bindsym $mod+shift+l move container to workspace number $ws3
-bindsym $mod+shift+u move container to workspace number $ws4
-bindsym $mod+shift+i move container to workspace number $ws5
-bindsym $mod+shift+o move container to workspace number $ws6
-bindsym $mod+shift+p move container to workspace number $ws7
+bindsym $mod+shift+h move container to workspace number $ws1
+bindsym $mod+shift+j move container to workspace number $ws2
+bindsym $mod+shift+k move container to workspace number $ws3
+bindsym $mod+shift+l move container to workspace number $ws4
+bindsym $mod+shift+y move container to workspace number $ws5
+bindsym $mod+shift+u move container to workspace number $ws6
+bindsym $mod+shift+i move container to workspace number $ws7
+bindsym $mod+shift+o move container to workspace number $ws8
+bindsym $mod+shift+p move container to workspace number $ws9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -135,7 +141,7 @@ bar {
 
 # Set inner/outer gaps
 gaps inner 5
-gaps outer 10
+gaps outer 15
 gaps top 0
 for_window [class=".*"] border pixel 0
 
@@ -143,5 +149,5 @@ for_window [class=".*"] border pixel 0
 exec --no-startup-id while :; do i3-msg -t subscribe '[ "window" ]' | grep -m 1 focus && pkill -SIGRTMIN+11 i3blocks; done
 
 # Startup applications
-exec --no-startup-id i3-msg "workspace $ws2; exec firefox; workspace $ws1; exec alacritty"
+exec --no-startup-id i3-msg "workspace $ws3; exec firefox; workspace $ws2; exec alacritty"
 

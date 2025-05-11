@@ -1,16 +1,16 @@
 #!/bin/bash
 
-choices="Lock\nLogout\nReboot\nShutdown"
-action=$(echo -e "$choices" | rofi -dmenu -p "Choose action")
+choices="lock\nlogout\nreboot\nshutdown"
+action=$(echo -e "$choices" | rofi -dmenu -p "action")
 
 case "$action" in
-  Lock)
+  lock)
     loginctl lock-session ;;
-  Reboot)
+  reboot)
     systemctl reboot ;;
-  Shutdown)
+  shutdown)
     systemctl poweroff ;;
-  Logout)
+  logout)
     i3-msg exit ;;
   *)
     exit 1 ;;
