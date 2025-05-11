@@ -181,7 +181,14 @@ Open `ibus-setup` and uncheck box related to 'show in tray'.
 
 ***
 
-Creating custom mappings through autokey: one script per mapping
+Creating custom mappings through `keymapper`
+
+Enable service on start:
+
+```
+systemctl enable keymapperd
+```
+
 
 ## Browser mappings (intended)
 
