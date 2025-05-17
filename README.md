@@ -216,6 +216,15 @@ ui.prefersReducedMotion -> set to number 1
 ui.key.menuAccessKeyFocuses -> false
 ```
 
+## Misc stuff
+
+Media tools
+
+```
+sudo apt install vlc
+sudo apt install ffmpeg
+```
+
 ***
 
 
