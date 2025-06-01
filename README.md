@@ -225,6 +225,12 @@ sudo apt install vlc
 sudo apt install ffmpeg
 ```
 
+Screenshot tooling
+
+```
+sudo apt install maim
+```
+
 ***
 
 

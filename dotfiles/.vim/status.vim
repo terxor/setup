@@ -1,5 +1,5 @@
 function! ShortenPath(path)
-  let maxplen = 50
+  let maxplen = 75
   if strlen(a:path) > maxplen
     let parts = split(a:path, '/')
     let l:sp = a:path

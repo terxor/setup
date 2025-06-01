@@ -31,6 +31,9 @@ source $ZSH/oh-my-zsh.sh
 # --------------------------------
 # general
 # --------------------------------
+
+setopt magic_equal_subst
+
 # Makes esc work without delay in vi-mode
 KEYTIMEOUT=1
 
@@ -53,6 +56,7 @@ FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=light'
 # --------------------------------
 
 alias py='python3'
+alias ts='timestamp | csv2md'
 
 # git diff aliases to use vimdiff
 alias gd="git difftool"
@@ -71,10 +75,17 @@ alias tree='tree -a -I .git'
 # vim wrapper
 v() {
   if [[ -d "$1" ]]; then
-    $EDITOR "+cd $1"
+    dir=$1
+    shift
+    $EDITOR "+cd $dir" "$@"
   else
     $EDITOR "$@"
   fi
+}
+
+# tb wrapper
+tb() {
+  v $tb "$tb/tmp_$(date +%Y%m%d%H%M%S)"
 }
 
 source $ZDOTDIR/fv.zsh
