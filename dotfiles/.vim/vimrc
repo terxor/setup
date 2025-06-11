@@ -50,7 +50,7 @@ nnoremap <leader>d :bd<CR>
 
 " For fzf-vim
 nnoremap <leader>e :Files<CR>
-nnoremap <leader>l :Buffers<CR>
+nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>f :Lines<CR>
 nnoremap <leader>s :Rg ''<CR>
 
