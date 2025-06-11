@@ -56,7 +56,6 @@ FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=light'
 # --------------------------------
 
 alias py='python3'
-alias ts='timestamp | csv2md'
 
 # git diff aliases to use vimdiff
 alias gd="git difftool"
@@ -81,11 +80,6 @@ v() {
   else
     $EDITOR "$@"
   fi
-}
-
-# tb wrapper
-tb() {
-  v $tb "$tb/tmp_$(date +%Y%m%d%H%M%S)"
 }
 
 source $ZDOTDIR/fv.zsh

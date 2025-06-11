@@ -1,11 +1,13 @@
 #!/bin/bash
 
-choices="lock\nlogout\nreboot\nshutdown"
+choices="lock\nsuspend\nlogout\nreboot\nshutdown"
 action=$(echo -e "$choices" | rofi -dmenu -p "action")
 
 case "$action" in
   lock)
     loginctl lock-session ;;
+  suspend)
+    systemctl suspend ;;
   reboot)
     systemctl reboot ;;
   shutdown)

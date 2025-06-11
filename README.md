@@ -233,4 +233,8 @@ sudo apt install maim
 
 ***
 
+### TODO
+
+- VIM: Fix multiple spaces in `gq` formatting
+
 

@@ -16,6 +16,9 @@ bindsym $mod+w exec --no-startup-id feh --bg-fill --randomize ~/workspace/backgr
 
 exec --no-startup-id autorandr --change
 
+# Auto touchpad disable on mouse connected
+exec --no-startup-id ~/.config/i3/touchpad_toggle.sh
+
 # Keymapper (the service keymapperd should be enabled)
 exec --no-startup-id keymapper
 
