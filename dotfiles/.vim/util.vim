@@ -43,59 +43,81 @@ function! RunCmdOnPara(cmd)
   call setreg('"', save_reg, save_regtype)
 endfunction
 
-function! RunTextQuery(...) abort
+" Function to find the range (start, end) between surrounding ```
+function! FindSurroundingCodeBlock() abort
+  let total_lines = line('$')
+  let cur_line = line('.')
+  let start = -1
+  let end = -1
 
-  " Determine query
-  if a:0 > 0
-    " Use passed query
-    let query = a:1
-    echom 'query is(from arg): ' . query
-  else
-    " Auto-extract query from next ``` block
-    let start = -1
-    let end = -1
-    let total_lines = line('$')
-
-    for lnum in range(line('.') + 1, total_lines)
-      let line_content = getline(lnum)
-      if line_content =~ '^```'
-        if start == -1
-          let start = lnum + 1
-        else
-          let end = lnum - 1
-          break
-        endif
-      endif
-    endfor
-
-    if start == -1 || end == -1 || start > end
-      echoerr "Could not find a valid ``` query block below the table."
-      return
+  " Search upwards for the previous ```
+  for lnum in range(cur_line - 1, 1, -1)
+    let line_content = getline(lnum)
+    if line_content =~ '^```'
+      let start = lnum + 1
+      break
     endif
+  endfor
 
-    let query_lines = getline(start, end)
-    let query = join(query_lines, " ")
-    echom 'query is: ' . query
+  " Search downwards for the next ```
+  for lnum in range(cur_line + 1, total_lines)
+    let line_content = getline(lnum)
+    if line_content =~ '^```'
+      let end = lnum - 1
+      break
+    endif
+  endfor
+
+  if start > 0 && end > 0 && start <= end
+    return [start, end]
+  endif
+  throw "Could not find a valid ``` query block below the table."
+endfunction
+
+" Find the first consecutive range of lines above the cursor that form a Markdown-style table
+function! FindTableAbove() abort
+  let cur_line = line('.') - 1
+  let start = -1
+  let end = -1
+
+  " Skip any non-table lines at the very beginning
+  while cur_line >= 1 && getline(cur_line) !~ '^|'
+    let cur_line -= 1
+  endwhile
+
+  " If we didn't find a line starting with '|', throw
+  if cur_line < 1
+    throw 'No Markdown table found above.'
   endif
 
-  " Save current unnamed register
-  let save_reg = getreg('"')
-  let save_regtype = getregtype('"')
-  normal! yip
+  " End of table is the first line starting with '|'
+  let end = cur_line
 
-  " Get deleted text from unnamed register
-  let lines = getreg('"', 1, 1)
+  " Now keep going up as long as lines start with '|'
+  while cur_line >= 1 && getline(cur_line) =~ '^|'
+    let start = cur_line
+    let cur_line -= 1
+  endwhile
 
-  " Restore unnamed register
-  call setreg('"', save_reg, save_regtype)
+  return [start, end]
+endfunction
 
+function! RunTextQuery(...) abort
+
+  let [start, end] = FindSurroundingCodeBlock()
+  let query_lines = getline(start, end)
+  let query = join(query_lines, " ")
+
+  let [t_start, t_end] = FindTableAbove()
+  let lines = getline(t_start, t_end)
   let normalized = systemlist('dfx --from md --to csv', lines)
 
   " Construct the shell command with the input
-  let cmd = 'textquery "' . query . '"'
+  let cmd = 'textquery ' . shellescape(query)
 
   " Run shell command with deleted paragraph as input
   let result = systemlist(cmd, normalized)
+  call setreg('+', join(result, "\n"))
 
   redraw!
   " Show output line-by-line
@@ -104,24 +126,11 @@ function! RunTextQuery(...) abort
     echom line
   endfor
 
-  " Prompt user for action
-  echon "\nPress <Enter> to copy to clipboard, any other key to cancel"
-
-  " Wait for input key
-  let key = getchar()
-
-  if key ==# char2nr("\r") 
-    " Copy to system clipboard
-    call setreg('+', join(result, "\n"))
-    echom "Output copied to clipboard."
-  else
-    echom "Output discarded."
-  endif
-
 endfunction
 
 command! Csv2Md call RunCmdOnPara('dfx --from csv --to md')
+command! Md2Csv call RunCmdOnPara('dfx --from md --to csv')
 command! MdTableFixup call RunCmdOnPara('dfx --from md --to md')
-command! -nargs=? TextQuery call RunTextQuery(<f-args>)
+command! TextQuery call RunTextQuery()
 
 
