@@ -1,7 +1,7 @@
 " Utility commands and other settings
 
 command! Config :e $MYVIMRC
-command! TrimWhitespace :normal :%s/\s\+$// | :let @/=''
+command! TrimWhitespace execute ':%s/\s\+$//e' | let @/=''
 command! JsonIndent execute ':%!python3 -m json.tool --indent 2'
 command! JsonLinesIndent execute ':%!python3 -m json.tool --indent 2 --json-lines'
 command! CopyFileName :let @+ = expand('%:t') | echo 'Copied: ' . @+
