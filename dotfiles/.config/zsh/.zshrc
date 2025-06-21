@@ -32,6 +32,8 @@ source $ZSH/oh-my-zsh.sh
 # general
 # --------------------------------
 
+bindkey '^P' push-line
+
 setopt magic_equal_subst
 
 # Makes esc work without delay in vi-mode

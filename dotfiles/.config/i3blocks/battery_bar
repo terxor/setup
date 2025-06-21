@@ -14,7 +14,7 @@ if (( capacity >= 99 )); then
 else
     case "$status" in
         "Charging") bar_char=">" ;;
-        "Discharging") bar_char="<" ;;
+        *) bar_char="<" ;;
     esac
 fi
 
