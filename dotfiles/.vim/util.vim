@@ -128,9 +128,18 @@ function! RunTextQuery(...) abort
 
 endfunction
 
+function! ExecBacktickToggle()
+  let cols = input("Enter column numbers (comma-separated): ")
+  if empty(cols)
+    echo "No columns provided."
+    return
+  endif
+  call RunCmdOnPara('dfx --from md --to md --tf-backtick=' . cols . '')
+endfunction
+
 command! Csv2Md call RunCmdOnPara('dfx --from csv --to md')
 command! Md2Csv call RunCmdOnPara('dfx --from md --to csv')
 command! MdTableFixup call RunCmdOnPara('dfx --from md --to md')
+command! BacktickToggle call ExecBacktickToggle()
 command! TextQuery call RunTextQuery()
-
 
