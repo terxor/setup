@@ -135,7 +135,7 @@ bar {
   i3bar_command i3bar -t
   position top
   status_command i3blocks
-  font pango:FiraCode 12
+  font pango:JetBrainsMono 12
   strip_workspace_numbers yes
   colors {
     background #00000055
