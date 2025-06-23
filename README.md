@@ -21,6 +21,10 @@ bash -c /tmp/setup.sh
 Or, directly execute:
 
 ```
+BRANCH=main curl -fsSL https://raw.githubusercontent.com/terxor/setup/$BRANCH/setup.sh | bash -s -- --remote --branch $BRANCH
+```
+
+```
 bash -c "$(wget -qO- https://raw.githubusercontent.com/terxor/setup/main/setup.sh)"
 ```
 
