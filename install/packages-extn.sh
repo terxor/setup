@@ -16,7 +16,6 @@ install_package rofi
 
 # Extension
 install_package autorandr
-install_package network-manager-applet
 install_package fonts-firacode
 install_package markdownlint
 install_package ffmpeg
@@ -26,3 +25,6 @@ install_package libtext-lorem-perl
 install_package obs-studio
 install_package python3-venv
 
+# Problematic
+# This one works on gdm
+# install_package network-manager-applet
