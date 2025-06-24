@@ -10,23 +10,31 @@ default_border normal 0
 set $mod Mod1
 set $othermod Mod4
 
+# -- Disabled stuff for testing --
 # Wallpaper
-exec_always --no-startup-id feh --bg-fill ~/workspace/backgrounds/japan-walk.webp
-bindsym $mod+w exec --no-startup-id feh --bg-fill --randomize ~/workspace/backgrounds/
+# exec_always --no-startup-id feh --bg-fill ~/workspace/backgrounds/japan-walk.webp
+# bindsym $mod+w exec --no-startup-id feh --bg-fill --randomize ~/workspace/backgrounds/
 
-exec --no-startup-id autorandr --change
+# exec --no-startup-id autorandr --change
 
 # Auto touchpad disable on mouse connected
-exec --no-startup-id ~/.config/i3/touchpad_toggle.sh
+# exec --no-startup-id ~/.config/i3/touchpad_toggle.sh
 
 # Keymapper (the service keymapperd should be enabled)
-exec --no-startup-id keymapper
+# exec --no-startup-id keymapper
 
 # Compositor
-exec --no-startup-id picom -b
+# exec --no-startup-id picom -b
 
 # Keyboard maps
-exec --no-startup-id xmodmap $HOME/.Xmodmap
+# exec --no-startup-id xmodmap $HOME/.Xmodmap
+
+# Publish window change events (for i3blocks title)
+# exec --no-startup-id while :; do i3-msg -t subscribe '[ "window" ]' | grep -m 1 focus && pkill -SIGRTMIN+11 i3blocks; done
+
+# Startup applications
+# exec --no-startup-id i3-msg "workspace $ws3; exec firefox; workspace $ws2; exec alacritty"
+# -- Disabled stuff for testing --
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -148,9 +156,4 @@ gaps outer 15
 gaps top 0
 for_window [class=".*"] border pixel 0
 
-# Publish window change events (for i3blocks title)
-exec --no-startup-id while :; do i3-msg -t subscribe '[ "window" ]' | grep -m 1 focus && pkill -SIGRTMIN+11 i3blocks; done
-
-# Startup applications
-exec --no-startup-id i3-msg "workspace $ws3; exec firefox; workspace $ws2; exec alacritty"
 
