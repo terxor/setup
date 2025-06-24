@@ -16,8 +16,8 @@ install_package alacritty
 
 # Dev tools
 install_package python3.13
-install_package g++
-install_package build-essential
+# install_package g++
+# install_package build-essential
 install_package git
 
 # Generic utility
@@ -26,8 +26,9 @@ install_package htop
 install_package xclip
 install_package curl
 install_package stow
-install_package ripgrep
-install_package vim-gtk3
+install_package unzip
+# install_package ripgrep
+# install_package vim-gtk3
 
 # Terminal
 install_package zsh
