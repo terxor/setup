@@ -33,6 +33,7 @@ source $ZSH/oh-my-zsh.sh
 # --------------------------------
 
 bindkey '^P' push-line
+bindkey '^H' clear-screen
 
 setopt magic_equal_subst
 

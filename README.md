@@ -241,4 +241,20 @@ sudo apt install maim
 
 - VIM: Fix multiple spaces in `gq` formatting
 
+## Wayland based setups
 
+Packages:
+
+```
+sway
+wl-clipboard
+waybar
+wofi
+lm-sensors
+swaylock
+
+# Image related tools
+grim
+slurp
+imv # Use imv-wayland
+```

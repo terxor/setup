@@ -28,3 +28,6 @@ sudo apt update -y
 # Problematic
 # This one works on gdm
 # install_package network-manager-applet
+
+# For utils
+sudo apt install python3-pytz
