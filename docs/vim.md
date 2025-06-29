@@ -126,3 +126,11 @@ A shorter way is `g/^/put _`
   you insert between each line by first copying that to a register)
 
 ***
+
+Generate an AP
+
+```
+:r !seq 0 10 100
+```
+
+

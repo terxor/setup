@@ -21,6 +21,10 @@ bash -c /tmp/setup.sh
 Or, directly execute:
 
 ```
+BRANCH=main curl -fsSL https://raw.githubusercontent.com/terxor/setup/$BRANCH/setup.sh | bash -s -- --remote --branch $BRANCH
+```
+
+```
 bash -c "$(wget -qO- https://raw.githubusercontent.com/terxor/setup/main/setup.sh)"
 ```
 
@@ -181,7 +185,14 @@ Open `ibus-setup` and uncheck box related to 'show in tray'.
 
 ***
 
-Creating custom mappings through autokey: one script per mapping
+Creating custom mappings through `keymapper`
+
+Enable service on start:
+
+```
+systemctl enable keymapperd
+```
+
 
 ## Browser mappings (intended)
 
@@ -200,7 +211,50 @@ Creating custom mappings through autokey: one script per mapping
 | Edit address     | ctrl+l       | YES      |
 | New tab          | ctrl+t       | YES      |
 
+### Firefox config
+
+In `about:config`:
+
+```
+ui.prefersReducedMotion -> set to number 1
+ui.key.menuAccessKeyFocuses -> false
+```
+
+## Misc stuff
+
+Media tools
+
+```
+sudo apt install vlc
+sudo apt install ffmpeg
+```
+
+Screenshot tooling
+
+```
+sudo apt install maim
+```
 
 ***
 
+### TODO
 
+- VIM: Fix multiple spaces in `gq` formatting
+
+## Wayland based setups
+
+Packages:
+
+```
+sway
+wl-clipboard
+waybar
+wofi
+lm-sensors
+swaylock
+
+# Image related tools
+grim
+slurp
+imv # Use imv-wayland
+```

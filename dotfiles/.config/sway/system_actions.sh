@@ -1,11 +1,14 @@
 #!/bin/bash
 
 choices="lock\nsuspend\nlogout\nreboot\nshutdown"
-action=$(echo -e "$choices" | rofi -dmenu -p "action")
+action=$(echo -e "$choices" | wofi --dmenu --prompt "action")
 
 case "$action" in
   lock)
-    loginctl lock-session ;;
+    swaylock \
+      -i ~/workspace/backgrounds/lockscreen.png \
+      --indicator-radius 100 \
+      --font-size 20;;
   suspend)
     systemctl suspend ;;
   reboot)
@@ -13,7 +16,7 @@ case "$action" in
   shutdown)
     systemctl poweroff ;;
   logout)
-    i3-msg exit ;;
+    swaymsg exit ;;
   *)
     exit 1 ;;
 esac
