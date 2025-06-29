@@ -19,6 +19,7 @@ install_package swaylock
 # Image related tools
 install_package grim
 install_package slurp
+install_package imv
 
 install_package brightnessctl
 
@@ -50,3 +51,4 @@ install_package $KEYMAPPER_PACKAGE
 
 # For utils
 sudo apt install python3-pytz
+sudo apt install python3-venv

@@ -71,6 +71,11 @@ input "type:touchpad" {
     natural_scroll enabled
 }
 
+input "type:pointer" {
+    accel_profile "flat"
+    pointer_accel -0.25
+}
+
 #
 # Example configuration:
 #
@@ -91,7 +96,7 @@ bindsym $mod+Shift+BackSpace kill
 bindsym $mod+slash exec --no-startup-id wofi --show run
 bindsym $mod+q exec --no-startup-id $HOME/.config/sway/system_actions.sh
 
-bindsym $mod+s exec --no-startup-id grim -g "$(slurp)" $scratch/screenshot_$(date +"%Y%m%d%H%M%S").png
+bindsym $mod+s exec --no-startup-id grim -g "$(slurp)" ~/workspace/scratch/screenshot_$(date +"%Y%m%d%H%M%S").png
 
 # change focus
 bindsym Control+$mod+h focus left

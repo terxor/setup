@@ -3,6 +3,9 @@
   "modules-left": ["sway/window"],
   "modules-center": ["sway/workspaces"],
   "modules-right": ["custom/mem", "custom/cpu_temp", "pulseaudio", "battery", "tray", "clock"],
+  "sway/workspaces": {
+    "sort-by-number": true
+  },
   "clock": {
     "format": "{:%d-%b %A %H:%M}"
   },
