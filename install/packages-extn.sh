@@ -50,5 +50,5 @@ install_package $KEYMAPPER_PACKAGE
 # install_package network-manager-applet
 
 # For utils
-sudo apt install python3-pytz
-sudo apt install python3-venv
+install_package python3-pytz
+install_package python3-venv

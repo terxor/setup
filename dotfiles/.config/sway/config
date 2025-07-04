@@ -128,15 +128,15 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "H"
-set $ws2 "J"
-set $ws3 "K"
-set $ws4 "L"
-set $ws5 "Y"
-set $ws6 "U"
-set $ws7 "I"
-set $ws8 "O"
-set $ws9 "P"
+set $ws1 "1:H"
+set $ws2 "2:J"
+set $ws3 "3:K"
+set $ws4 "4:L"
+set $ws5 "5:Y"
+set $ws6 "6:U"
+set $ws7 "7:I"
+set $ws8 "8:O"
+set $ws9 "9:P"
 
 # switch to workspace
 bindsym $mod+h workspace $ws1
