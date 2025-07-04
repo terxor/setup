@@ -8,6 +8,8 @@ install_package() {
 
 sudo apt update -y
 
+install_package vim
+
 # Base packages
 # install_package xorg
 # install_package lightdm
