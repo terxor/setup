@@ -20,7 +20,7 @@ let g:fzf_vim = {}
 let g:fzf_vim.preview_window = []
 
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --hidden --no-ignore --glob '!.git/*' --column --line-number --no-heading --color=always --smart-case " .
-            \ <q-args>, 1, <bang>0)
+      \ <q-args>, 1, { 'options': '--delimiter : --nth 4..' }, <bang>0)
 
 
 function! RunCmdOnPara(cmd)

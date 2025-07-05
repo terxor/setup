@@ -21,6 +21,7 @@ install_package grim
 install_package slurp
 install_package imv
 
+# sudo usermod -aG video $USER
 install_package brightnessctl
 
 KEYMAPPER_PACKAGE=/tmp/keymapper.deb
