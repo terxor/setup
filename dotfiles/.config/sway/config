@@ -93,7 +93,7 @@ input "type:pointer" {
 bindsym $mod+Shift+BackSpace kill
 
 # start a program launcher
-bindsym $mod+slash exec --no-startup-id wofi --show run
+bindsym $mod+slash exec --no-startup-id env PATH=$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin wofi --show run
 bindsym $mod+q exec --no-startup-id $HOME/.config/sway/system_actions.sh
 
 bindsym $mod+s exec --no-startup-id grim -g "$(slurp)" ~/workspace/scratch/screenshot_$(date +"%Y%m%d%H%M%S").png
