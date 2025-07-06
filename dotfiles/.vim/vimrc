@@ -60,7 +60,7 @@ vnoremap <leader>y "+y
 
 " Quick paste, replaces text in visual mode
 nnoremap <leader>p "+p
-vnoremap <leader>p d"+P
+vnoremap <leader>p "+p
 
 " Smarter replace
 vnoremap <leader>r y:<C-u>%s/<C-r>"/<C-r>"
