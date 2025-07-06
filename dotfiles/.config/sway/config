@@ -36,6 +36,12 @@ exec waybar
 # /etc/sway/config.d/
 
 output * bg ~/workspace/backgrounds/japan-walk.webp fill
+
+# Mirror
+# output $main_display res 1920x1080 pos 0 0
+# output $ext_display res 1920x1080 pos 0 0
+
+# The following cfg makes main display be below the external one
 output $ext_display res 2560x1440 pos 0 0
 output $main_display res 1920x1080 pos 0 1440
 
@@ -160,15 +166,15 @@ bindsym $mod+shift+i move container to workspace $ws7
 bindsym $mod+shift+o move container to workspace $ws8
 bindsym $mod+shift+p move container to workspace $ws9
 
-workspace $ws1 output $main_display
-workspace $ws2 output $main_display
-workspace $ws3 output $main_display
-workspace $ws4 output $main_display
+workspace $ws1 output $ext_display
+workspace $ws2 output $ext_display
+workspace $ws3 output $ext_display
+workspace $ws4 output $ext_display
 workspace $ws5 output $ext_display
 workspace $ws6 output $ext_display
 workspace $ws7 output $ext_display
-workspace $ws8 output $ext_display
-workspace $ws9 output $ext_display
+workspace $ws8 output $main_display
+workspace $ws9 output $main_display
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
