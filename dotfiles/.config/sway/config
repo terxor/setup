@@ -23,6 +23,8 @@ set $term foot
 # Your preferred application launcher
 set $menu wmenu-run
 
+set $desktop_bg $HOME/workspace/setup/other/bg.png
+
 include /etc/sway/config-vars.d/*
 
 exec keymapper
@@ -35,7 +37,7 @@ exec waybar
 # package `sway-backgrounds`. Installing this package drops a config file to
 # /etc/sway/config.d/
 
-output * bg ~/workspace/backgrounds/japan-walk.webp fill
+output * bg $desktop_bg fill
 
 # Mirror
 # output $main_display res 1920x1080 pos 0 0
