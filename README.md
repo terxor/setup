@@ -242,6 +242,8 @@ sudo apt install maim
 
 - VIM: Fix multiple spaces in `gq` formatting
 
+- Try tmux plugins (especially tmux-open)
+
 ## Wayland based setups
 
 Packages:

@@ -88,4 +88,9 @@ v() {
 source $ZDOTDIR/fv.zsh
 source $ZDOTDIR/custom_post.zsh
 
-
+# --------------------------------
+# standard utils lib
+# --------------------------------
+if [[ -d "$HOME/workspace/utils/py" ]]; then
+  export PYTHONPATH="${PYTHONPATH:+$PYTHONPATH:}$HOME/workspace/utils/py"
+fi
