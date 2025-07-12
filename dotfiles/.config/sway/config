@@ -23,6 +23,8 @@ set $term foot
 # Your preferred application launcher
 set $menu wmenu-run
 
+set $desktop_bg $HOME/workspace/setup/other/bg.png
+
 include /etc/sway/config-vars.d/*
 
 exec keymapper
@@ -35,7 +37,13 @@ exec waybar
 # package `sway-backgrounds`. Installing this package drops a config file to
 # /etc/sway/config.d/
 
-output * bg ~/workspace/backgrounds/japan-walk.webp fill
+output * bg $desktop_bg fill
+
+# Mirror
+# output $main_display res 1920x1080 pos 0 0
+# output $ext_display res 1920x1080 pos 0 0
+
+# The following cfg makes main display be below the external one
 output $ext_display res 2560x1440 pos 0 0
 output $main_display res 1920x1080 pos 0 1440
 
@@ -93,7 +101,7 @@ input "type:pointer" {
 bindsym $mod+Shift+BackSpace kill
 
 # start a program launcher
-bindsym $mod+slash exec --no-startup-id wofi --show run
+bindsym $mod+slash exec --no-startup-id env PATH=$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin wofi --show run
 bindsym $mod+q exec --no-startup-id $HOME/.config/sway/system_actions.sh
 
 bindsym $mod+s exec --no-startup-id grim -g "$(slurp)" ~/workspace/scratch/screenshot_$(date +"%Y%m%d%H%M%S").png
@@ -160,15 +168,15 @@ bindsym $mod+shift+i move container to workspace $ws7
 bindsym $mod+shift+o move container to workspace $ws8
 bindsym $mod+shift+p move container to workspace $ws9
 
-workspace $ws1 output $main_display
-workspace $ws2 output $main_display
-workspace $ws3 output $main_display
-workspace $ws4 output $main_display
+workspace $ws1 output $ext_display
+workspace $ws2 output $ext_display
+workspace $ws3 output $ext_display
+workspace $ws4 output $ext_display
 workspace $ws5 output $ext_display
 workspace $ws6 output $ext_display
 workspace $ws7 output $ext_display
-workspace $ws8 output $ext_display
-workspace $ws9 output $ext_display
+workspace $ws8 output $main_display
+workspace $ws9 output $main_display
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

@@ -218,6 +218,7 @@ In `about:config`:
 ```
 ui.prefersReducedMotion -> set to number 1
 ui.key.menuAccessKeyFocuses -> false
+browser.urlbar.suggest.weather -> false
 ```
 
 ## Misc stuff
@@ -240,6 +241,8 @@ sudo apt install maim
 ### TODO
 
 - VIM: Fix multiple spaces in `gq` formatting
+
+- Try tmux plugins (especially tmux-open)
 
 ## Wayland based setups
 
