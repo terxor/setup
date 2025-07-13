@@ -261,3 +261,12 @@ grim
 slurp
 imv # Use imv-wayland
 ```
+
+Enable auto-mute speakers on plugging in headphones 
+
+- `alsamixer`
+- If not visible by `F5`, then select sound card using `F6`
+- Use arrow keys to go the the auto-mute vertical section.
+- Enable it.
+- `sudo alsactl store`
+
