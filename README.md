@@ -270,3 +270,9 @@ Enable auto-mute speakers on plugging in headphones
 - Enable it.
 - `sudo alsactl store`
 
+Screensharing
+
+```
+sudo apt install pipewire xdg-desktop-portal
+systemctl --user restart xdg-desktop-portal
+```
