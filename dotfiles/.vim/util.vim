@@ -7,7 +7,7 @@ command! JsonLinesIndent execute ':%!python3 -m json.tool --indent 2 --json-line
 command! CopyFileName :let @+ = expand('%:t') | echo 'Copied: ' . @+
 command! CopyFilePath :let @+ = expand('%:p') | echo 'Copied: ' . @+
 command! Reformat :%!clang-format
-command! Timestamp :put =strftime('%Y-%m-%d %H:%M:%S')
+command! Timestamp :execute "normal! i" . strftime('%Y-%m-%d %H:%M:%S')
 
 " autocmd OptionSet diff setlocal syntax=off
 if &diff
