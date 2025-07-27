@@ -7,7 +7,7 @@ case "$action" in
   lock)
     swaylock \
       -i $HOME/workspace/setup/other/bg.png \
-      --indicator-radius 100 \
+      --indicator-radius 110 \
       --font-size 20;;
   suspend)
     systemctl suspend ;;

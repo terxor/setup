@@ -221,6 +221,10 @@ ui.key.menuAccessKeyFocuses -> false
 browser.urlbar.suggest.weather -> false
 ```
 
+Optionally:
+
+- Zoom: `Settings -> Zoom -> Default zoom 120%`
+
 ## Misc stuff
 
 Media tools
@@ -275,4 +279,25 @@ Screensharing
 ```
 sudo apt install pipewire xdg-desktop-portal
 systemctl --user restart xdg-desktop-portal
+```
+
+***
+
+## Compile VIM on wayland
+
+
+Prerequisite for wayland clipboard
+
+```
+sudo apt install libwayland-dev libxkbcommon-dev libgtk-3-dev
+```
+
+Steps
+
+```
+git clone https://github.com/vim/vim.git
+cd vim/src
+./configure --with-wayland
+make
+sudo make install
 ```
