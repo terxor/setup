@@ -79,6 +79,7 @@ local function configure_cmp()
     -- other lspconfig configs
   }
   require('lspconfig').pyright.setup{}
+  vim.o.signcolumn = "number"
 end
 
 return {

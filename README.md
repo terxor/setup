@@ -301,3 +301,13 @@ cd vim/src
 make
 sudo make install
 ```
+
+## Bluetooth connection (example: headphone)
+
+```
+sudo apt install pipewire pipewire-audio pipewire-pulse wireplumber
+sudo apt install blueman
+
+# Run blueman-manager to connect
+```
+
