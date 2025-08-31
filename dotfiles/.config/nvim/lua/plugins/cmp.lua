@@ -78,7 +78,8 @@ local function configure_cmp()
     capabilities = capabilities,
     -- other lspconfig configs
   }
-  require('lspconfig').pyright.setup{}
+  -- Uncomment to use python cmp
+  -- require('lspconfig').pyright.setup{}
   vim.o.signcolumn = "number"
 end
 
