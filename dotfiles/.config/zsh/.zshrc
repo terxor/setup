@@ -74,17 +74,6 @@ alias tree='tree -a -I .git'
 # utils
 # --------------------------------
 
-# vim wrapper
-v() {
-  if [[ -d "$1" ]]; then
-    dir=$1
-    shift
-    $EDITOR "+cd $dir" "$@"
-  else
-    $EDITOR "$@"
-  fi
-}
-
 source $ZDOTDIR/fv.zsh
 source $ZDOTDIR/custom_post.zsh
 
