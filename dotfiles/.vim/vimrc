@@ -44,9 +44,9 @@ let mapleader = " "
 map ; $
 
 " Quick exit and save
-nnoremap <leader>q :qa<CR>
+nnoremap Q :qa<CR>
 nnoremap <leader>w :w<CR>
-nnoremap <leader>d :bd<CR>
+nnoremap <c-q> :bd<CR>
 
 " For fzf-vim
 nnoremap <leader>e :Files<CR>
@@ -66,9 +66,9 @@ vnoremap <leader>p "+p
 vnoremap <leader>r y:<C-u>%s/<C-r>"/<C-r>"
 nnoremap <leader>r :%s/<C-r><C-w>/<C-r><C-w>
 
-" Use tab and shift-tab to cycle through buffers
-nnoremap <tab> :bn<CR>
-nnoremap <s-tab> :bp<CR>
+" Use <c-n> and <c-p> to switch buffers
+nnoremap <c-n> :bn<CR>
+nnoremap <c-p> :bp<CR>
 
 " Hide other windows
 nnoremap <leader>o :only<CR>
