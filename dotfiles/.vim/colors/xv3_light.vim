@@ -4,6 +4,7 @@
 " 
 " `xv3_light` theme (gui only)
 " --------------------------------
+" Hint: Type :hi to debug colors
 
 let g:inherit_termbg = 1
 
@@ -26,6 +27,7 @@ let s:grey_alt   = "145"
 let s:lblue      = "153"
 let s:lgrey      = "252"
 let s:off_white  = "254"
+let s:almostwhite  = "255"
 let s:purple     = "56"
 let s:red        = "88"
 let s:teal       = "30"
@@ -36,6 +38,8 @@ let s:yellow     = "136"
 let s:amber      = "230"
 let s:lpurple    = "189"
 let s:alt_purple = "60"
+let s:lcyan      = "195"
+let s:dsgreen    = "193"
 
 let s:b_green = "194"
 let s:b_yellow = "229"
@@ -78,8 +82,8 @@ endif
 
 call HgS("StatusLine", s:fg,  s:lpurple, s:bold) " Status line color on active/inactive buffers 
 call HgS("StatusLineNC", s:bg, s:alt_purple, "")
-call HgS("CursorLine",   "", s:amber, "")
-call HgS("CursorLineNr", s:red, s:amber, "")
+call HgS("CursorLine",   "", s:almostwhite, "")
+call HgS("CursorLineNr", s:red, s:almostwhite, "")
 call HgS("VertSplit", s:fg, s:off_white, "")
 call HgF("Comment", s:red)
 call HgF("Keyword", s:purple)
@@ -94,7 +98,7 @@ call HgF("PreProc", s:purple)
 call HgB("MatchParen", s:warn_bg)
 call HgS("Todo", s:red, s:bg, s:bold)
 call HgF("LineNr", s:faded)
-call HgS("Visual", s:fg, s:lblue, "")
+call HgS("Visual", s:fg, s:dsgreen, "")
 call HgF("Title", s:red)
 call HgS("Search", s:fg, s:warn_bg, "")
 call HgS("CurSearch", s:fg, s:warn_bg, s:bold)
@@ -135,6 +139,7 @@ hi link markdownStrong            Normal
 hi link markdownBold          Normal
 hi link markdownItalic            Normal
 hi link markdownLongLine          xv3_Grey
-hi link markdownError             xv3_Warn
+" Set errors to normal, avoid noise due to underscores mainly
+hi link markdownError             Normal
 
 set fillchars=eob:\ ,vert:\  " Note: space

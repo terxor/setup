@@ -18,6 +18,19 @@ fvwords() {
   zle redisplay
 }
 
+fvadd() {
+  if [[ -n "$1" ]]; then
+    tmpfile=$(mktemp)
+    cp $FVWORDS $tmpfile
+    echo "$1" >> $tmpfile
+    sort $tmpfile -o $FVWORDS
+    echo "Added $1"
+  else
+    echo "Nothing to add"
+  fi
+}
+
+
 zle -N fvwords
 bindkey '^f' fvwords
 
