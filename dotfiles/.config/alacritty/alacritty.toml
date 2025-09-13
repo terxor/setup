@@ -20,15 +20,15 @@ blinking = "Never"
 
 [colors.primary]
 background = "#ffffff" # 231
-foreground = "#5f5f87" #  60
+foreground = "#3a3a3a" # 236
 
 [colors.selection]
 text       = "#000000" #   0
-background = "#d7d7ff" # 189
+background = "#d7d7d7" # 188
 
 [colors.cursor]
 text       = "#ffffff" # 230
-cursor     = "#8787af" # 103
+cursor     = "#3a3a3a" # 237
 
 [colors.normal]
 black      = "#3a3a3a" # 237

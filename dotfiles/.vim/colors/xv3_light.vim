@@ -13,40 +13,47 @@ highlight clear
 syntax reset
 
 " Colors
-let s:alt_green  = "106"
-let s:bg         = "231"
-let s:blue       = "24"
-let s:brown      = "131"
-let s:dark_brown = "52"
-let s:dark_green = "70"
-let s:faded      = "102"
-let s:fg         = "238"
-let s:green      = "64"
-let s:grey       = "195"
-let s:grey_alt   = "145"
-let s:lblue      = "153"
-let s:lgrey      = "252"
-let s:off_white  = "254"
+let s:alt_green    = "106"
+let s:bg           = "231"
+let s:blue         = "24"
+let s:black        = "0"
+let s:brown        = "131"
+let s:dark_brown   = "52"
+let s:dark_green   = "70"
+let s:faded        = "102"
+let s:fg           = "238"
+let s:green        = "64"
+let s:grey         = "195"
+let s:grey_alt     = "145"
+let s:lblue        = "153"
+let s:lgrey        = "252"
+let s:off_white    = "254"
 let s:almostwhite  = "255"
-let s:purple     = "56"
-let s:red        = "88"
-let s:teal       = "30"
-let s:unset      = "10"
-let s:warn_bg    = "222"
-let s:warn_fg    = "214"
-let s:yellow     = "136"
-let s:amber      = "230"
-let s:lpurple    = "189"
-let s:alt_purple = "60"
-let s:lcyan      = "195"
-let s:dsgreen    = "193"
-
-let s:b_green = "194"
-let s:b_yellow = "229"
-let s:b_red = "217"
+let s:purple       = "56"
+let s:red          = "88"
+let s:teal         = "30"
+let s:unset        = "10"
+let s:warn_bg      = "222"
+let s:warn_fg      = "214"
+let s:yellow       = "136"
+let s:amber        = "230"
+let s:gold         = "220"
+let s:mistyrose    = "224"
+let s:lpurple      = "189"
+let s:alt_purple   = "60"
+let s:lcyan        = "195"
+let s:dsgreen      = "193"
+let s:dsgrey       = "123"
+let s:almostwhite2 = "15"
+let s:ygreen       = "192"
+let s:b_green      = "194"
+let s:b_yellow     = "229"
+let s:b_red        = "217"
+let s:yellow2 = "226"
 
 let s:bold = "bold"
 let s:none = "none"
+
 
 function! HgS(group, fg, bg, style)
   let cmd = "highlight " . a:group
@@ -80,10 +87,10 @@ else
   call HgS("Normal", s:fg, s:bg, s:none)
 endif
 
-call HgS("StatusLine", s:fg,  s:lpurple, s:bold) " Status line color on active/inactive buffers 
-call HgS("StatusLineNC", s:bg, s:alt_purple, "")
+call HgS("StatusLine", s:fg,  s:b_green, s:bold) " Status line color on active/inactive buffers 
+call HgS("StatusLineNC", s:fg, s:off_white, "")
 call HgS("CursorLine",   "", s:almostwhite, "")
-call HgS("CursorLineNr", s:red, s:almostwhite, "")
+call HgS("CursorLineNr", s:red, s:almostwhite, s:bold)
 call HgS("VertSplit", s:fg, s:off_white, "")
 call HgF("Comment", s:red)
 call HgF("Keyword", s:purple)
@@ -98,10 +105,10 @@ call HgF("PreProc", s:purple)
 call HgB("MatchParen", s:warn_bg)
 call HgS("Todo", s:red, s:bg, s:bold)
 call HgF("LineNr", s:faded)
-call HgS("Visual", s:fg, s:dsgreen, "")
+call HgS("Visual", s:fg, s:lblue, s:bold)
 call HgF("Title", s:red)
-call HgS("Search", s:fg, s:warn_bg, "")
-call HgS("CurSearch", s:fg, s:warn_bg, s:bold)
+call HgS("Search", s:fg, s:yellow2, "")
+call HgS("CurSearch", s:fg, s:yellow2, s:bold)
 " call HgB("EndOfBuffer", s:bg)
 
 call HgF("xv3_CodeBlock", s:blue)
@@ -124,8 +131,8 @@ call HgS("Folded", s:fg, s:bg, s:none)
 " hi link FoldColumn Normal
 " hi link SignColumn Normal
 
-call HgS("Pmenu", s:alt_purple, s:lpurple, s:none)
-call HgS("PmenuSel", s:lpurple, s:alt_purple, s:none)
+call HgS("Pmenu", "", s:amber, s:none)
+call HgS("PmenuSel", "", s:gold, s:bold)
 
 hi link markdownH1                Title
 hi link markdownCodeBlock         xv3_CodeBlock
