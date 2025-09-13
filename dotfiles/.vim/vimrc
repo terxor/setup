@@ -85,6 +85,9 @@ nnoremap <leader>; 80a*<esc>o<esc>
 cnoremap <c-k> <up>
 cnoremap <c-j> <down>
 
+" Use c in surround for markdown codeblock
+let b:surround_99 = "```\n\r\n```"
+
 source $HOME/.vim/status.vim
 source $HOME/.vim/util.vim
 source $HOME/.vim/filetype.vim
