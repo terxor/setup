@@ -221,6 +221,10 @@ ui.key.menuAccessKeyFocuses -> false
 browser.urlbar.suggest.weather -> false
 ```
 
+Optionally:
+
+- Zoom: `Settings -> Zoom -> Default zoom 120%`
+
 ## Misc stuff
 
 Media tools
@@ -261,3 +265,49 @@ grim
 slurp
 imv # Use imv-wayland
 ```
+
+Enable auto-mute speakers on plugging in headphones 
+
+- `alsamixer`
+- If not visible by `F5`, then select sound card using `F6`
+- Use arrow keys to go the the auto-mute vertical section.
+- Enable it.
+- `sudo alsactl store`
+
+Screensharing
+
+```
+sudo apt install pipewire xdg-desktop-portal
+systemctl --user restart xdg-desktop-portal
+```
+
+***
+
+## Compile VIM on wayland
+
+
+Prerequisite for wayland clipboard
+
+```
+sudo apt install libwayland-dev libxkbcommon-dev libgtk-3-dev
+```
+
+Steps
+
+```
+git clone https://github.com/vim/vim.git
+cd vim/src
+./configure --with-wayland
+make
+sudo make install
+```
+
+## Bluetooth connection (example: headphone)
+
+```
+sudo apt install pipewire pipewire-audio pipewire-pulse wireplumber
+sudo apt install blueman
+
+# Run blueman-manager to connect
+```
+

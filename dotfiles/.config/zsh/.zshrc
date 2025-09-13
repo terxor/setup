@@ -74,17 +74,6 @@ alias tree='tree -a -I .git'
 # utils
 # --------------------------------
 
-# vim wrapper
-v() {
-  if [[ -d "$1" ]]; then
-    dir=$1
-    shift
-    $EDITOR "+cd $dir" "$@"
-  else
-    $EDITOR "$@"
-  fi
-}
-
 source $ZDOTDIR/fv.zsh
 source $ZDOTDIR/custom_post.zsh
 
@@ -94,3 +83,23 @@ source $ZDOTDIR/custom_post.zsh
 if [[ -d "$HOME/workspace/utils/py" ]]; then
   export PYTHONPATH="${PYTHONPATH:+$PYTHONPATH:}$HOME/workspace/utils/py"
 fi
+
+# tmpbuf related
+
+insert_first_empty_buffer() {
+    # local buf
+    # buf=$(tb -f | awk '{print $1}')
+    # zle -U "\$tb/$buf"
+
+    buffers=(${(z)$(tb -f)})  # split into words
+    (( ${#buffers[@]} )) || return  # exit if empty
+
+    # shuffle and pick first
+    buf=${buffers[RANDOM % ${#buffers[@]} + 1]}  # Zsh arrays are 1-based
+    zle -U "\$tb/$buf"
+}
+zle -N insert_first_empty_buffer
+
+# Bind to Ctrl-T
+bindkey '^T' insert_first_empty_buffer
+

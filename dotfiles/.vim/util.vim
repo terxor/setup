@@ -7,7 +7,7 @@ command! JsonLinesIndent execute ':%!python3 -m json.tool --indent 2 --json-line
 command! CopyFileName :let @+ = expand('%:t') | echo 'Copied: ' . @+
 command! CopyFilePath :let @+ = expand('%:p') | echo 'Copied: ' . @+
 command! Reformat :%!clang-format
-command! Timestamp :put =strftime('%Y-%m-%d %H:%M:%S')
+command! Timestamp :execute "normal! i" . strftime('%Y-%m-%d %H:%M:%S')
 
 " autocmd OptionSet diff setlocal syntax=off
 if &diff
@@ -137,9 +137,27 @@ function! ExecBacktickToggle()
   call RunCmdOnPara('dfx --from md --to md --tf-backtick=' . cols . '')
 endfunction
 
+function! RunCurrentBuf()
+    let current_file = expand('%:p')
+    if !filereadable(current_file)
+        echohl ErrorMsg | echom "Error: The current buffer is not a readable file." | echohl None
+        return
+    endif
+    let result_str = system(current_file)
+    let result = split(result_str, '\n')
+    call setreg('+', join(result, "\n"))
+    redraw!
+    for line in result
+        echom line
+    endfor
+endfunction
+
+
 command! Csv2Md call RunCmdOnPara('dfx --from csv --to md')
 command! Md2Csv call RunCmdOnPara('dfx --from md --to csv')
 command! MdTableFixup call RunCmdOnPara('dfx --from md --to md')
 command! BacktickToggle call ExecBacktickToggle()
 command! TextQuery call RunTextQuery()
+command! RunCurrentBuf call RunCurrentBuf()
 
+nnoremap <leader><leader>x :RunCurrentBuf<CR>

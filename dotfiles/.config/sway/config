@@ -104,7 +104,7 @@ bindsym $mod+Shift+BackSpace kill
 bindsym $mod+slash exec --no-startup-id env PATH=$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin wofi --show run
 bindsym $mod+q exec --no-startup-id $HOME/.config/sway/system_actions.sh
 
-bindsym $mod+s exec --no-startup-id grim -g "$(slurp)" ~/workspace/scratch/screenshot_$(date +"%Y%m%d%H%M%S").png
+bindsym $mod+s exec --no-startup-id grim -g "$(slurp)" - | tee ~/Pictures/screenshot_$(date +"%Y%m%d%H%M%S").png | wl-copy
 
 # change focus
 bindsym Control+$mod+h focus left

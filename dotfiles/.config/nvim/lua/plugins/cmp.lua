@@ -42,7 +42,7 @@ local function configure_cmp()
     sources = cmp.config.sources({
       { name = 'nvim_lsp', max_item_count = 5 },
       { name = 'vsnip' },
-      { name = 'buffer', keyword_length = 3 },
+      { name = 'buffer', keyword_length = 2 },
       { name = 'path' },
     })
   })
@@ -78,7 +78,9 @@ local function configure_cmp()
     capabilities = capabilities,
     -- other lspconfig configs
   }
-  require('lspconfig').pyright.setup{}
+  -- Uncomment to use python cmp
+  -- require('lspconfig').pyright.setup{}
+  vim.o.signcolumn = "number"
 end
 
 return {
