@@ -49,7 +49,8 @@ let s:ygreen       = "192"
 let s:b_green      = "194"
 let s:b_yellow     = "229"
 let s:b_red        = "217"
-let s:yellow2 = "226"
+let s:yellow2      = "226"
+let s:green2       = "157"
 
 let s:bold = "bold"
 let s:none = "none"
@@ -131,7 +132,7 @@ call HgS("Folded", s:fg, s:bg, s:none)
 " hi link FoldColumn Normal
 " hi link SignColumn Normal
 
-call HgS("Pmenu", "", s:amber, s:none)
+call HgS("Pmenu", "", s:b_yellow, s:none)
 call HgS("PmenuSel", "", s:gold, s:bold)
 
 hi link markdownH1                Title
