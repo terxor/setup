@@ -54,3 +54,8 @@ bindings = [
   { key = "F11", action = "ToggleFullscreen" },
 ]
 
+[general]
+import = [
+  "~/.config/alacritty/custom.toml"
+]
+
